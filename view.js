@@ -225,15 +225,16 @@ class DataView {
       },
       visualMap: {
         type: 'continuous', min: 0, max: maxVal,
-        left: 16, bottom: 18, text: ['多', '少'], calculable: true,
+        left: 20, bottom: 26, text: ['多', '少'], calculable: true,
         inRange: { color: ['#e3edfb', '#7fb0f5', '#2563eb', '#173b8e'] },
         outOfRange: { color: '#f1f5f9' },
         textStyle: { color: '#475569', fontSize: 12 },
       },
       series: [{
         name: '在租设备', type: 'map', map: 'hubei',
-        roam: true, zoom: 1.05,
-        layoutCenter: ['50%', '52%'], layoutSize: '100%', selectedMode: false,
+        roam: true, zoom: 1.0,
+        aspectScale: 1, /* 真实经纬度比例：默认 0.75 把湖北压扁，竖向只占面板约六成，1 可填满高度 */
+        layoutCenter: ['50%', '50%'], layoutSize: '100%', selectedMode: false,
         label: {
           show: true,
           backgroundColor: 'rgba(255,255,255,.82)',
@@ -241,7 +242,10 @@ class DataView {
           padding: [2, 4],
           formatter: (p) => {
             const d = p.data || {};
-            const short = { '东西湖区域': '东西湖', '汉阳区域': '汉阳', '武汉区域': '武汉', '新城区域': '新城' }[p.name] || p.name;
+            const short = {
+              '东西湖区域': '东西湖', '汉阳区域': '汉阳', '武汉区域': '武汉', '新城区域': '新城',
+              '恩施土家族苗族自治州': '恩施', '神农架林区': '神农架',
+            }[p.name] || p.name;
             if ((d.value || 0) > 0) {
               return `{n|${short}}\n{c|剪${d.scissor || 0}} {b|臂${d.boom || 0}}`;
             }
