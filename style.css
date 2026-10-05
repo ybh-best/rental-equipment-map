@@ -166,6 +166,8 @@ tfoot td.col-name { text-align: left; }
 /* ===== 地图 ===== */
 .map-panel { position: relative; }
 .map-box { flex: 1; min-height: 0; position: relative; }
+.map-wrap { flex: 1; min-height: 0; position: relative; }
+.map-wrap .map-box { position: absolute; inset: 0; }
 .map-placeholder {
   position: absolute; inset: 0;
   display: flex; flex-direction: column;
@@ -365,4 +367,5 @@ tfoot td.col-name { text-align: left; }
   .content { grid-template-columns: 1fr; }
   .table-scroll { max-height: 360px; }
   .map-box { min-height: 460px; }
+  .map-wrap { min-height: 460px; }
 }

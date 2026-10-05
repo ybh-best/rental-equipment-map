@@ -26,13 +26,20 @@ function fmtTime(iso) {
 }
 
 function showEmpty(message) {
-  $('salesTbody').innerHTML = `<tr class="empty-row"><td colspan="3">${message}</td></tr>`;
-  $('summaryRow').style.display = 'none';
-  $('salesSelect').disabled = true;
-  $('placeholderText').textContent = message;
-  $('mapPlaceholder').style.display = '';
-  $('unknownCard').style.display = 'none';
-  $('publishInfo').textContent = '';
+  const tbody = $('salesTbody');
+  if (tbody) tbody.innerHTML = `<tr class="empty-row"><td colspan="3">${message}</td></tr>`;
+  const sum = $('summaryRow');
+  if (sum) sum.style.display = 'none';
+  const sel = $('salesSelect');
+  if (sel) sel.disabled = true;
+  const phText = $('placeholderText');
+  if (phText) phText.textContent = message;
+  const ph = $('mapPlaceholder');
+  if (ph) ph.style.display = '';
+  const card = $('unknownCard');
+  if (card) card.style.display = 'none';
+  const info = $('publishInfo');
+  if (info) info.textContent = '';
 }
 
 async function loadPublished() {
