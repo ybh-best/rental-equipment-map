@@ -43,7 +43,7 @@ async function loadPublished() {
   try {
     // github.io 连接被"卡住"时 fetch 不返回，6 秒超时后改走 jsDelivr（国内可访问）
     const ctrl = new AbortController();
-    const timer = setTimeout(() => ctrl.abort(), 6000);
+    const timer = setTimeout(() => ctrl.abort(), 4000);
     let resp;
     try {
       resp = await fetch('./data/result.json?t=' + Date.now(), { cache: 'no-store', signal: ctrl.signal });
@@ -89,6 +89,7 @@ let started = false;
 function start() {
   if (started) return;
   started = true;
+  $('gateMask').style.display = 'none';
   loadPublished();
 }
 function codeOk(v) {

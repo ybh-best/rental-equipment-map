@@ -26,7 +26,7 @@ class DataView {
     if (this.geo) return this.geo;
     // github.io 连接被"卡住"时 fetch 不报错也不返回，6 秒超时后改走 jsDelivr（国内可访问）
     const ctrl = new AbortController();
-    const timer = setTimeout(() => ctrl.abort(), 6000);
+    const timer = setTimeout(() => ctrl.abort(), 4000);
     let resp;
     try {
       resp = await fetch('./hubei.json', { signal: ctrl.signal });
