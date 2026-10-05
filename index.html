@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>门店在租设备分布图</title>
+  <link rel="stylesheet" href="./style.css?v=1.3.0">
+  <script src="./xlsx.full.min.js?v=1.3.0"></script>
+  <script src="./echarts.min.js" onerror="this.onerror=null;this.src='https://registry.npmmirror.com/echarts/5.5.1/files/dist/echarts.min.js'"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="logo">📍</span>
+      <div>
+        <h1>门店在租设备分布图</h1>
+        <p>剪刀车 / 臂车 · 业务员汇总 · 湖北省区域分布（武汉精确到区）</p>
+      </div>
+      <span class="ver">v1.3.0</span>
+    </div>
+    <div class="toolbar">
+      <label class="upload-btn">
+        <input type="file" id="fileInput" accept=".xlsx,.xlsm">
+        <span id="uploadText">📄 上传在租情况 Excel</span>
+      </label>
+      <label class="check" title="租赁状态为“在租”（排除非在租）或占用单据非空的设备计入统计">
+        <input type="checkbox" id="rentedOnly" checked>
+        仅统计在租设备
+      </label>
+      <div class="select-wrap">
+        <span class="select-label">业务员：</span>
+        <select id="salesSelect" disabled>
+          <option value="__ALL__">全部数据（汇总）</option>
+        </select>
+      </div>
+      <span id="fileInfo" class="file-info"></span>
+    </div>
+  </header>
+
+  <main class="content">
+    <!-- 左侧：业务员汇总表 -->
+    <section class="panel table-panel">
+      <div class="panel-head">
+        <h2>业务员在租汇总</h2>
+        <span id="tableSub" class="panel-sub">请先上传 Excel</span>
+      </div>
+      <div class="table-scroll">
+        <table id="salesTable">
+          <thead>
+            <tr>
+              <th class="col-name">业务员名称</th>
+              <th class="col-num">剪刀车在租</th>
+              <th class="col-num">臂车在租</th>
+            </tr>
+          </thead>
+          <tbody id="salesTbody">
+            <tr class="empty-row"><td colspan="3">暂无数据，请上传业务在租情况 Excel</td></tr>
+          </tbody>
+          <tfoot>
+            <tr id="summaryRow" class="summary-row" style="display:none">
+              <td class="col-name">汇总</td>
+              <td class="col-num" id="sumScissor">0</td>
+              <td class="col-num" id="sumBoom">0</td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+      <div class="legend">
+        <span><i class="dot dot-cut"></i>剪 = 剪刀车（系列含“剪叉”）</span>
+        <span><i class="dot dot-boom"></i>臂 = 臂车（其他系列）</span>
+      </div>
+    </section>
+
+    <!-- 右侧：湖北地图 -->
+    <section class="panel map-panel">
+      <div class="panel-head">
+        <h2 id="mapTitle">湖北省在租设备分布</h2>
+        <span class="panel-sub">滚轮缩放 / 拖动查看，悬停查看明细</span>
+      </div>
+      <div id="mapChart" class="map-box">
+        <div class="map-placeholder" id="mapPlaceholder">
+          <div class="ph-icon">🗺️</div>
+          <p>上传 Excel 后在此展示湖北区域分布</p>
+          <p class="ph-tip">武汉按行政区展示，其他地区按市州汇总</p>
+        </div>
+      </div>
+      <div id="unknownCard" class="unknown-card" style="display:none">
+        <b>⚠️ 未识别区域：</b>
+        <span id="unknownText"></span>
+        <div id="unknownSamples" class="unknown-samples"></div>
+      </div>
+    </section>
+  </main>
+
+  <div id="loading" class="loading-mask" style="display:none">
+    <div class="spinner"></div><span>正在解析 Excel，请稍候…</span>
+  </div>
+
+  <script src="./parser.js?v=1.3.0"></script>
+  <script src="./app.js?v=1.3.0"></script>
+</body>
+</html>
