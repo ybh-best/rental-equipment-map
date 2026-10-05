@@ -7,6 +7,19 @@
   <link rel="stylesheet" href="./style.css?v=1.6.0">
   <script src="./xlsx.full.min.js?v=1.5.0" onerror="this.onerror=null;this.src='https://registry.npmmirror.com/xlsx/0.18.5/files/dist/xlsx.full.min.js'"></script>
   <script src="./echarts.min.js" onerror="this.onerror=null;this.src='https://registry.npmmirror.com/echarts/5.5.1/files/dist/echarts.min.js'"></script>
+  <script>
+  /* 大文件看门狗：连接被"卡住"（不报错、一直转圈）时 onerror 不会触发，
+     4 秒后若库还没就绪，自动改从国内 CDN（npmmirror）加载 */
+  setTimeout(function () {
+    var inject = function (src) {
+      var s = document.createElement('script');
+      s.src = src;
+      document.head.appendChild(s);
+    };
+    if (!window.XLSX) inject('https://registry.npmmirror.com/xlsx/0.18.5/files/dist/xlsx.full.min.js');
+    if (!window.echarts) inject('https://registry.npmmirror.com/echarts/5.5.1/files/dist/echarts.min.js');
+  }, 4000);
+  </script>
 </head>
 <body class="admin-body">
   <!-- 拖拽上传全屏提示层 -->

@@ -24,7 +24,17 @@ class DataView {
 
   async loadGeo() {
     if (this.geo) return this.geo;
-    const resp = await fetch('./hubei.json');
+    // github.io 连接被"卡住"时 fetch 不报错也不返回，6 秒超时后改走 jsDelivr（国内可访问）
+    const ctrl = new AbortController();
+    const timer = setTimeout(() => ctrl.abort(), 6000);
+    let resp;
+    try {
+      resp = await fetch('./hubei.json', { signal: ctrl.signal });
+    } catch (e) {
+      resp = await fetch('https://cdn.jsdelivr.net/gh/ybh-best/rental-equipment-map@main/hubei.json');
+    } finally {
+      clearTimeout(timer);
+    }
     this.geo = await resp.json();
     return this.geo;
   }
@@ -119,6 +129,13 @@ class DataView {
 
   async renderMap() {
     if (!this.data || !this.el.map) return;
+    // echarts 可能还在从国内 CDN 兜底加载中，等它就绪（最多等约 20 秒）
+    if (!window.echarts) {
+      this._echartsWaits = (this._echartsWaits || 0) + 1;
+      if (this._echartsWaits <= 40) setTimeout(() => this.renderMap(), 500);
+      return;
+    }
+    this._echartsWaits = 0;
     if (!this.chart) this.chart = echarts.init(this.el.map);
     const geo = await this.loadGeo();
 

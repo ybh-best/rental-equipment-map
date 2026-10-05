@@ -6,6 +6,16 @@
   <title>门店在租设备分布图</title>
   <link rel="stylesheet" href="./style.css?v=1.5.0">
   <script src="./echarts.min.js" onerror="this.onerror=null;this.src='https://registry.npmmirror.com/echarts/5.5.1/files/dist/echarts.min.js'"></script>
+  <script>
+  /* 大文件看门狗：连接被"卡住"时 onerror 不会触发，4 秒后自动改从国内 CDN 加载 */
+  setTimeout(function () {
+    if (!window.echarts) {
+      var s = document.createElement('script');
+      s.src = 'https://registry.npmmirror.com/echarts/5.5.1/files/dist/echarts.min.js';
+      document.head.appendChild(s);
+    }
+  }, 4000);
+  </script>
 </head>
 <body>
   <header class="topbar">
