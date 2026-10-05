@@ -41,17 +41,8 @@ function showEmpty(message) {
 async function loadPublished() {
   $('fileInfo').textContent = '正在加载数据…';
   try {
-    // github.io 连接被"卡住"时 fetch 不返回，6 秒超时后改走 jsDelivr（国内可访问）
-    const ctrl = new AbortController();
-    const timer = setTimeout(() => ctrl.abort(), 4000);
-    let resp;
-    try {
-      resp = await fetch('./data/result.json?t=' + Date.now(), { cache: 'no-store', signal: ctrl.signal });
-    } catch (e) {
-      resp = await fetch('https://cdn.jsdelivr.net/gh/ybh-best/rental-equipment-map@main/data/result.json?t=' + Date.now(), { cache: 'no-store' });
-    } finally {
-      clearTimeout(timer);
-    }
+    // github.io 卡住时 4 秒超时，自动逐级切换国内镜像（见 view.js fetchWithMirrors）
+    const resp = await fetchWithMirrors('./data/result.json?t=' + Date.now(), 'data/result.json');
     if (!resp.ok) throw new Error('HTTP ' + resp.status);
     const json = await resp.json();
 

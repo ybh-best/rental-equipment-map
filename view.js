@@ -6,6 +6,34 @@
 
 window.UNKNOWN_REGION = window.UNKNOWN_REGION || '未识别区域';
 
+/* github.io 卡住/某镜像被拦时自动逐级切换：jsDelivr 多节点 → statically → raw */
+const DATA_MIRRORS = (p) => [
+  'https://cdn.jsdelivr.net/gh/ybh-best/rental-equipment-map@main/' + p,
+  'https://gcore.jsdelivr.net/gh/ybh-best/rental-equipment-map@main/' + p,
+  'https://fastly.jsdelivr.net/gh/ybh-best/rental-equipment-map@main/' + p,
+  'https://cdn.statically.io/gh/ybh-best/rental-equipment-map/main/' + p,
+  'https://raw.githubusercontent.com/ybh-best/rental-equipment-map/main/' + p,
+];
+async function fetchWithMirrors(localUrl, repoPath) {
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), 4000);
+  try {
+    const r = await fetch(localUrl, { signal: ctrl.signal });
+    if (r.ok) return r;
+    throw new Error('local bad status');
+  } catch (e) {
+    for (const u of DATA_MIRRORS(repoPath)) {
+      try {
+        const r = await fetch(u, { cache: 'no-store' });
+        if (r.ok) return r;
+      } catch (_) { /* 试下一个镜像 */ }
+    }
+    throw new Error('所有数据源均不可用');
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
 class DataView {
   constructor(els) {
     this.el = els; // {tbody, sumScissor, sumBoom, summaryRow, select, sub, map, mapTitle, unknownCard, unknownText, unknownSamples}
@@ -24,17 +52,7 @@ class DataView {
 
   async loadGeo() {
     if (this.geo) return this.geo;
-    // github.io 连接被"卡住"时 fetch 不报错也不返回，6 秒超时后改走 jsDelivr（国内可访问）
-    const ctrl = new AbortController();
-    const timer = setTimeout(() => ctrl.abort(), 4000);
-    let resp;
-    try {
-      resp = await fetch('./hubei.json', { signal: ctrl.signal });
-    } catch (e) {
-      resp = await fetch('https://cdn.jsdelivr.net/gh/ybh-best/rental-equipment-map@main/hubei.json');
-    } finally {
-      clearTimeout(timer);
-    }
+    const resp = await fetchWithMirrors('./hubei.json', 'hubei.json');
     this.geo = await resp.json();
     return this.geo;
   }
