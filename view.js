@@ -6,31 +6,35 @@
 
 window.UNKNOWN_REGION = window.UNKNOWN_REGION || '未识别区域';
 
-/* github.io 卡住/某镜像被拦时自动逐级切换：jsDelivr 多节点 → statically → raw */
+/* github.io 卡住/某镜像被拦时自动逐级切换：gcore/fastly/jsdelivr → statically → raw */
 const DATA_MIRRORS = (p) => [
-  'https://cdn.jsdelivr.net/gh/ybh-best/rental-equipment-map@main/' + p,
   'https://gcore.jsdelivr.net/gh/ybh-best/rental-equipment-map@main/' + p,
   'https://fastly.jsdelivr.net/gh/ybh-best/rental-equipment-map@main/' + p,
+  'https://cdn.jsdelivr.net/gh/ybh-best/rental-equipment-map@main/' + p,
   'https://cdn.statically.io/gh/ybh-best/rental-equipment-map/main/' + p,
   'https://raw.githubusercontent.com/ybh-best/rental-equipment-map/main/' + p,
 ];
-async function fetchWithMirrors(localUrl, repoPath) {
+async function getJsonOnce(url, ms) {
   const ctrl = new AbortController();
-  const timer = setTimeout(() => ctrl.abort(), 4000);
+  const timer = setTimeout(() => ctrl.abort(), ms);
   try {
-    const r = await fetch(localUrl, { signal: ctrl.signal });
-    if (r.ok) return r;
-    throw new Error('local bad status');
+    const r = await fetch(url, { cache: 'no-store', signal: ctrl.signal });
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    return r;
+  } finally {
+    clearTimeout(timer);
+  }
+}
+async function fetchWithMirrors(localUrl, repoPath) {
+  try {
+    return await getJsonOnce(localUrl, 4000);
   } catch (e) {
     for (const u of DATA_MIRRORS(repoPath)) {
       try {
-        const r = await fetch(u, { cache: 'no-store' });
-        if (r.ok) return r;
+        return await getJsonOnce(u, 8000);
       } catch (_) { /* 试下一个镜像 */ }
     }
     throw new Error('所有数据源均不可用');
-  } finally {
-    clearTimeout(timer);
   }
 }
 

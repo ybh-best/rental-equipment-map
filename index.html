@@ -24,104 +24,110 @@
   })();
   </script>
   <script>
-  /* 非阻塞脚本加载器（内联，本身不走网络）：
-     · 所有 JS 动态注入，请求卡住也不会阻塞页面解析/输入
-     · 每个文件先取本站，3.5 秒取不到立刻切国内 CDN（npmmirror / jsDelivr）
-     · 一旦某文件走了 CDN，后续文件直接走 CDN（熔断，不再傻等） */
+  /* 非阻塞资源加载器（内联，本身不走网络）：
+     1) echarts/xlsx 大库：本站与国内 CDN「同时并行」下载，谁先到用谁，慢线路不用干等
+     2) 业务小脚本：先取本站，8 秒不通依次切 gcore/fastly/jsdelivr 等镜像
+     3) 全部失败时指出具体文件，10 秒后自动重试一次，也可手动点按钮重试 */
   (function () {
     var REPO = 'ybh-best/rental-equipment-map';
-    /* 库文件国内镜像链（npmmirror / jsDelivr 多节点 / 七牛 staticfile） */
-    var LIB_MIRRORS = {
-      'echarts.min.js': [
-        'https://registry.npmmirror.com/echarts/5.5.1/files/dist/echarts.min.js',
-        'https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js',
-        'https://gcore.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js',
-        'https://fastly.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js',
-        'https://cdn.staticfile.org/echarts/5.4.3/echarts.min.js'
-      ],
-      'xlsx.full.min.js': [
-        'https://registry.npmmirror.com/xlsx/0.18.5/files/dist/xlsx.full.min.js',
-        'https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js',
-        'https://gcore.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js',
-        'https://fastly.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js',
-        'https://cdn.staticfile.org/xlsx/0.18.5/xlsx.full.min.js'
-      ]
+    /* 大库：race 中的 CDN 与本站并行竞速；rest 是竞速全部失败后的补充链 */
+    var LIBS = {
+      'echarts.min.js': {
+        race: ['https://registry.npmmirror.com/echarts/5.5.1/files/dist/echarts.min.js'],
+        rest: ['https://unpkg.com/echarts@5.5.1/dist/echarts.min.js',
+               'https://gcore.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js',
+               'https://fastly.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js',
+               'https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js',
+               'https://cdn.staticfile.org/echarts/5.4.3/echarts.min.js']
+      },
+      'xlsx.full.min.js': {
+        race: ['https://registry.npmmirror.com/xlsx/0.18.5/files/dist/xlsx.full.min.js'],
+        rest: ['https://unpkg.com/xlsx@0.18.5/dist/xlsx.full.min.js',
+               'https://gcore.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js',
+               'https://fastly.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js',
+               'https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js',
+               'https://cdn.staticfile.org/xlsx/0.18.5/xlsx.full.min.js']
+      }
     };
-    /* 自有业务脚本的多镜像链（jsDelivr 某节点被 ORB 拦截时自动换节点） */
     function appMirrors(base) {
-      return [
-        'https://cdn.jsdelivr.net/gh/' + REPO + '@main/' + base,
-        'https://gcore.jsdelivr.net/gh/' + REPO + '@main/' + base,
-        'https://fastly.jsdelivr.net/gh/' + REPO + '@main/' + base,
-        'https://cdn.statically.io/gh/' + REPO + '/main/' + base,
-        'https://raw.githubusercontent.com/' + REPO + '/main/' + base
-      ];
+      return ['https://gcore.jsdelivr.net/gh/' + REPO + '@main/' + base,
+              'https://fastly.jsdelivr.net/gh/' + REPO + '@main/' + base,
+              'https://cdn.jsdelivr.net/gh/' + REPO + '@main/' + base,
+              'https://cdn.statically.io/gh/' + REPO + '/main/' + base,
+              'https://raw.githubusercontent.com/' + REPO + '/main/' + base];
     }
-    var TIMEOUT = 3500;
-    var skipLocal = false;
-    var libCursor = 0;
-    var appCursor = 0;
 
-    function inject(src) {
+    var LIB_TIMEOUT = 30000; /* 大库允许慢速下载，最长 30 秒 */
+    var APP_TIMEOUT = 8000;
+
+    function inject(src, timeout, ordered) {
       return new Promise(function (resolve, reject) {
         var s = document.createElement('script');
         s.src = src;
-        s.async = false; /* 同组按插入顺序执行，保证依赖关系 */
+        if (ordered) s.async = false;
         var done = false;
         var finish = function (ok) {
           if (done) return;
           done = true;
           clearTimeout(timer);
           if (!ok && s.parentNode) s.parentNode.removeChild(s);
-          ok ? resolve() : reject(new Error('load fail'));
+          ok ? resolve() : reject(new Error('timeout/error'));
         };
-        var timer = setTimeout(function () { finish(false); }, TIMEOUT);
+        var timer = setTimeout(function () { finish(false); }, timeout);
         s.onload = function () { finish(true); };
         s.onerror = function () { finish(false); };
         document.head.appendChild(s);
       });
     }
 
-    function loadOne(file) {
+    function loadLib(file) {
       var base = file.split('?')[0];
-      var isLib = !!LIB_MIRRORS[base];
-      var mirrors = isLib ? LIB_MIRRORS[base] : appMirrors(base);
-      var sources = skipLocal ? [] : ['./' + file];
-      var cursor = isLib ? libCursor : appCursor;
-      for (var k = 0; k < mirrors.length; k++) {
-        sources.push(mirrors[(cursor + k) % mirrors.length]);
-      }
-      var idx = 0;
-      return (function tryNext() {
-        if (idx >= sources.length) return Promise.reject(new Error(base));
-        var src = sources[idx++];
-        return inject(src).then(function () {
-          if (src !== './' + file) {
-            skipLocal = true; /* 本站不通，后续文件直接走镜像 */
-            var chosen = mirrors.indexOf(src);
-            if (chosen >= 0) {
-              if (isLib) libCursor = chosen; else appCursor = chosen;
-            }
-          }
-        }, tryNext);
-      })();
+      var cfg = LIBS[base];
+      /* 本站 + 国内主 CDN 同时开下，第一个成功即结束等待（败者稍后静默完成，同版本互不影响） */
+      var racers = ['./' + file].concat(cfg.race).map(function (u) {
+        return inject(u, LIB_TIMEOUT, false);
+      });
+      return Promise.any(racers).catch(function () {
+        return cfg.rest.reduce(function (p, u) {
+          return p.catch(function () { return inject(u, LIB_TIMEOUT, false); });
+        }, Promise.reject());
+      });
     }
 
-    function showErr(msg) {
+    var appCdnFirst = false; /* 本站业务脚本一旦不通，后续文件直接走镜像 */
+    function loadApp(file) {
+      var base = file.split('?')[0];
+      var sources = appCdnFirst ? appMirrors(base) : ['./' + file].concat(appMirrors(base));
+      return sources.reduce(function (p, u) {
+        return p.catch(function () {
+          return inject(u, APP_TIMEOUT, true).then(function () {
+            if (u !== './' + file) appCdnFirst = true;
+          });
+        });
+      }, Promise.reject());
+    }
+
+    var retried = false;
+    function failBar(name) {
       var d = document.createElement('div');
-      d.textContent = msg;
-      d.style.cssText = 'position:fixed;left:0;right:0;top:0;z-index:99999;background:#b3261e;color:#fff;font:14px sans-serif;padding:10px 14px;text-align:center';
+      d.style.cssText = 'position:fixed;left:0;right:0;top:0;z-index:99999;background:#b3261e;color:#fff;font:14px/1.6 sans-serif;padding:12px 14px;text-align:center';
+      d.innerHTML = '⚠️ 资源 <b></b> 在本站和所有备用节点均加载失败，当前网络不稳定。'
+        + '<button type="button" id="__retryBtn" style="margin-left:10px;padding:4px 12px;border:0;border-radius:6px;background:#fff;color:#b3261e;font-weight:700;cursor:pointer">立即重试</button>'
+        + '<div style="font-size:12px;opacity:.85;margin-top:4px">10 秒后自动重试；也可切换网络（如手机热点）后按 Ctrl+F5 强刷</div>';
+      d.querySelector('b').textContent = name;
       document.body.appendChild(d);
+      document.getElementById('__retryBtn').onclick = function () { location.reload(); };
+      if (!retried) { retried = true; setTimeout(function () { location.reload(); }, 10000); }
     }
 
-    /* groups：组内并行、组间串行 */
-    window.__boot = async function (groups) {
-      try {
-        for (var g = 0; g < groups.length; g++) {
-          await Promise.all(groups[g].map(loadOne));
-        }
-      } catch (e) {
-        showErr('资源加载失败（' + e.message + '），请检查网络后按 Ctrl+F5 刷新重试');
+    /* libs：大库（并行竞速）；apps：业务脚本（按数组顺序加载） */
+    window.__boot = async function (libs, apps) {
+      var i;
+      for (i = 0; i < libs.length; i++) {
+        try { await loadLib(libs[i]); } catch (e) { failBar(libs[i]); return; }
+      }
+      for (i = 0; i < apps.length; i++) {
+        try { await loadApp(apps[i]); } catch (e) { failBar(apps[i]); return; }
       }
     };
   })();
@@ -219,10 +225,11 @@
   </div>
 
   <script>
-  /* 全部非阻塞并行加载，按插入顺序执行；卡住 3.5 秒自动切国内 CDN */
-  window.__boot([
-    ['echarts.min.js', 'access-code.js?v=1.6.0', 'view.js?v=1.6.0', 'viewer-app.js?v=1.6.0']
-  ]);
+  /* 第1组大库并行竞速；第2组业务脚本按序加载。全程非阻塞，失败自动切镜像/重试 */
+  window.__boot(
+    ['echarts.min.js'],
+    ['access-code.js?v=1.6.0', 'view.js?v=1.6.0', 'viewer-app.js?v=1.6.0']
+  );
   </script>
 </body>
 </html>
