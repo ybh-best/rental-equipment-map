@@ -7,33 +7,53 @@
 window.UNKNOWN_REGION = window.UNKNOWN_REGION || '未识别区域';
 const UNKNOWN_SALES = '未填写业务员';
 
-// 武汉功能区（非行政区划）→ 实际所属区
-const WUHAN_ZONE_MAP = [
-  ['东湖新技术开发区', '洪山区'], ['东湖高新区', '洪山区'], ['光谷', '洪山区'],
-  ['武汉经济技术开发区', '蔡甸区'], ['武汉经开区', '蔡甸区'], ['经开区', '蔡甸区'],
-  ['沌阳', '蔡甸区'], ['沌口', '蔡甸区'], ['军山', '蔡甸区'],
-  ['临空港', '东西湖区'], ['化工新城', '青山区'], ['化学工业区', '青山区'],
-  ['东湖生态旅游', '武昌区'], ['东湖风景区', '武昌区'],
-  ['汉口北', '黄陂区'], ['阳逻', '新洲区'],
+/* ---------- v1.5.0 区域体系：武汉13区+鄂州合并为4大板块（共19区域） ----------
+ * 东西湖区域 = 东西湖/江岸/江汉(用户所说"汉口区")/硚口/黄陂
+ * 汉阳区域   = 汉阳/汉南/蔡甸
+ * 武汉区域   = 武昌/江夏 + 洪山西半（连通武昌-江夏的走廊）
+ * 新城区域   = 青山/新洲/鄂州 + 洪山东半（光谷，连通青山-鄂州） */
+const ZONE_DXH = '东西湖区域';
+const ZONE_HY = '汉阳区域';
+const ZONE_WH = '武汉区域';
+const ZONE_XC = '新城区域';
+
+// 行政区 -> 板块（洪山区单列，按地址关键词切东西）
+const DIST_ZONE = {
+  东西湖区: ZONE_DXH, 江岸区: ZONE_DXH, 江汉区: ZONE_DXH, 硚口区: ZONE_DXH, 黄陂区: ZONE_DXH,
+  汉阳区: ZONE_HY, 汉南区: ZONE_HY, 蔡甸区: ZONE_HY,
+  武昌区: ZONE_WH, 江夏区: ZONE_WH,
+  青山区: ZONE_XC, 新洲区: ZONE_XC,
+};
+const HONGSHAN_DISTRICT = '洪山区';
+// 洪山西侧地名（->武汉区域）；光谷/东湖高新等东侧及无细节的洪山地址默认 ->新城区域
+const HONGSHAN_WEST_KW = ['白沙洲', '张家湾', '青菱', '南湖', '珞狮', '李桥', '建安街', '烽胜', '狮子山'];
+// 功能区（非行政区划）关键词 -> 板块
+const WUHAN_ZONE_DIRECT = [
+  ['东湖新技术开发区', ZONE_XC], ['东湖高新区', ZONE_XC], ['光谷', ZONE_XC],
+  ['武汉经济技术开发区', ZONE_HY], ['武汉经开区', ZONE_HY], ['经开区', ZONE_HY],
+  ['沌阳', ZONE_HY], ['沌口', ZONE_HY], ['军山', ZONE_HY],
+  ['临空港', ZONE_DXH], ['化工新城', ZONE_XC], ['化学工业区', ZONE_XC],
+  ['东湖生态旅游', ZONE_WH], ['东湖风景区', ZONE_WH],
+  ['汉口北', ZONE_DXH], ['阳逻', ZONE_XC],
 ];
 
-let REGION_NAMES = [];
-let WUHAN_DISTRICTS = [];
-let OTHER_CITIES = [];
+const WUHAN_DISTRICTS = Object.keys(DIST_ZONE).concat([HONGSHAN_DISTRICT]);
+const ZONE_NAMES = [ZONE_DXH, ZONE_HY, ZONE_WH, ZONE_XC];
+// 其余市州（鄂州市整体并入新城区域）
+const OTHER_CITIES = [
+  '黄石市', '十堰市', '宜昌市', '襄阳市', '荆门市', '孝感市', '荆州市',
+  '黄冈市', '咸宁市', '随州市', '恩施土家族苗族自治州',
+  '仙桃市', '潜江市', '天门市', '神农架林区',
+];
+// 聚合输出顺序（地图按名称匹配，顺序仅影响 regions 数组）
+const REGION_ORDER = OTHER_CITIES.concat(ZONE_NAMES);
+
 let GEO = null;
 
 async function loadRegions() {
   if (GEO) return GEO;
   const resp = await fetch('./hubei.json');
   GEO = await resp.json();
-  // 神农架林区名称以"区"结尾但不属于武汉，按 adcode(4201xx) 判定
-  GEO.features.forEach((ft) => {
-    const name = ft.properties.name;
-    const adcode = String(ft.properties.adcode || '');
-    REGION_NAMES.push(name);
-    if (adcode.startsWith('4201')) WUHAN_DISTRICTS.push(name);
-    else OTHER_CITIES.push(name);
-  });
   return GEO;
 }
 
@@ -47,7 +67,7 @@ function cityKeyword(city) {
   return city.endsWith('市') ? city.slice(0, -1) : city;
 }
 
-/* 地址 -> GeoJSON 区域名（武汉精确到区，外地以市州为单位），无法识别返回 null */
+/* 地址 -> 板块/市州名（武汉+鄂州归并到4大板块，外地以市州为单位），无法识别返回 null */
 function parseRegion(addr) {
   if (!addr) return null;
   const s = String(addr).replace(/\s+/g, '');
@@ -56,29 +76,37 @@ function parseRegion(addr) {
   const pW = s.indexOf('武汉');
   if (pW >= 0) candidates.push([pW, '__WUHAN__']);
   OTHER_CITIES.forEach((city) => {
-    const kw = cityKeyword(city);
-    const p = s.indexOf(kw);
+    const p = s.indexOf(cityKeyword(city));
     if (p >= 0) candidates.push([p, city]);
   });
+  const pEz = s.indexOf('鄂州');
+  if (pEz >= 0) candidates.push([pEz, '__EZHOU__']);
   if (!candidates.length) return null;
   candidates.sort((a, b) => a[0] - b[0]);
   const hit = candidates[0][1];
+  if (hit === '__EZHOU__') return ZONE_XC;   // 鄂州市整体并入新城区域
   if (hit !== '__WUHAN__') return hit;
 
   // 武汉：在"武汉"之后找最先出现的行政区/功能区
   const tail = s.slice(pW);
-  const districtHits = [];
+  const dh = [];
   WUHAN_DISTRICTS.forEach((d) => {
     const p = tail.indexOf(d);
-    if (p >= 0) districtHits.push([p, d]);
+    if (p >= 0) dh.push([p, 'd', d]);
   });
-  WUHAN_ZONE_MAP.forEach(([zone, d]) => {
-    const p = tail.indexOf(zone);
-    if (p >= 0) districtHits.push([p, d]);
+  WUHAN_ZONE_DIRECT.forEach(([kw, z]) => {
+    const p = tail.indexOf(kw);
+    if (p >= 0) dh.push([p, 'z', z]);
   });
-  if (!districtHits.length) return null;
-  districtHits.sort((a, b) => a[0] - b[0]);
-  return districtHits[0][1];
+  if (!dh.length) return null;
+  dh.sort((a, b) => a[0] - b[0]);
+  const [, kind, val] = dh[0];
+  if (kind === 'z') return val;
+  if (val === HONGSHAN_DISTRICT) {
+    // 洪山切两半：西侧地名 -> 武汉区域；其余（含光谷/东湖高新）默认新城区域
+    return HONGSHAN_WEST_KW.some((kw) => tail.includes(kw)) ? ZONE_WH : ZONE_XC;
+  }
+  return DIST_ZONE[val];
 }
 
 /* 表头定位关键列 */
@@ -150,7 +178,7 @@ function analyzeWorkbook(buffer, fileName, rentedOnlyOpt) {
 
   const salespeople = new Map();
   const regionSales = new Map();
-  const regionOrder = REGION_NAMES.concat([UNKNOWN_REGION]);
+  const regionOrder = REGION_ORDER.concat([UNKNOWN_REGION]);
   const regionTotals = {};
   regionOrder.forEach((n) => { regionTotals[n] = emptyCount(); });
   const unknownSamples = [];

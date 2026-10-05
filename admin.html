@@ -4,11 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>管理员 · 门店在租设备分布图</title>
-  <link rel="stylesheet" href="./style.css?v=1.4.0">
-  <script src="./xlsx.full.min.js?v=1.4.0" onerror="this.onerror=null;this.src='https://registry.npmmirror.com/xlsx/0.18.5/files/dist/xlsx.full.min.js'"></script>
+  <link rel="stylesheet" href="./style.css?v=1.6.0">
+  <script src="./xlsx.full.min.js?v=1.5.0" onerror="this.onerror=null;this.src='https://registry.npmmirror.com/xlsx/0.18.5/files/dist/xlsx.full.min.js'"></script>
   <script src="./echarts.min.js" onerror="this.onerror=null;this.src='https://registry.npmmirror.com/echarts/5.5.1/files/dist/echarts.min.js'"></script>
 </head>
 <body class="admin-body">
+  <!-- 拖拽上传全屏提示层 -->
+  <div class="drag-overlay"><div class="drag-overlay-card">📄 松开鼠标即可上传 Excel（.xlsx / .xlsm）</div></div>
+
   <header class="topbar admin-topbar">
     <div class="brand">
       <span class="logo">🔐</span>
@@ -42,6 +45,13 @@
       <div class="step-title"><span class="step-no">3</span>发布上线</div>
       <button id="publishBtn" class="publish-btn" disabled>🚀 发布到网站</button>
       <span id="publishStatus" class="step-status"></span>
+    </div>
+    <div class="step code-step">
+      <div class="step-title"><span class="step-no">🔑</span>今日访问密码（每日自动更换）</div>
+      <div class="code-box"><b id="todayCode">------</b></div>
+      <button id="copyCodeBtn" class="mini-btn" type="button">复制密码</button>
+      <button id="copyLinkBtn" class="mini-btn" type="button">复制免输链接</button>
+      <span id="copyStatus" class="step-status"></span>
     </div>
   </section>
 
@@ -83,11 +93,12 @@
         <h2 id="mapTitle">发布预览 · 湖北省分布</h2>
         <span class="panel-sub">滚轮缩放 / 拖动查看，悬停查看明细</span>
       </div>
-      <div id="mapChart" class="map-box">
-        <div class="map-placeholder">
+      <div class="map-wrap">
+        <div id="mapChart" class="map-box"></div>
+        <div class="map-placeholder" id="adminMapPlaceholder">
           <div class="ph-icon">🗺️</div>
           <p>上传 Excel 后在此预览地图</p>
-          <p class="ph-tip">武汉按行政区展示，其他地区按市州汇总</p>
+          <p class="ph-tip">武汉合并为四大区域，其他地区按市州汇总</p>
         </div>
       </div>
       <div id="unknownCard" class="unknown-card" style="display:none">
@@ -112,7 +123,10 @@
         <li>Permissions → Repository permissions → <b>Contents 设为 Read and write</b></li>
         <li>生成后复制 <b>github_pat_</b> 开头的字符串，粘贴到下方</li>
       </ol>
-      <textarea id="tokenInput" rows="3" placeholder="github_pat_xxxxxxxxxxxxxxxxxxxx"></textarea>
+      <div class="token-input-row">
+        <input id="tokenInput" type="password" autocomplete="off" spellcheck="false" placeholder="github_pat_xxxxxxxxxxxxxxxxxxxx">
+        <button id="tokenEye" class="mini-btn" type="button">👁 显示</button>
+      </div>
       <div class="modal-actions">
         <button id="tokenClear" class="mini-btn danger" type="button">清除已存 Token</button>
         <span style="flex:1"></span>
@@ -123,12 +137,27 @@
     </div>
   </div>
 
+  <!-- 发布确认弹层 -->
+  <div id="confirmModal" class="modal-mask" style="display:none">
+    <div class="modal modal-sm">
+      <h3>确认发布到公网？</h3>
+      <p class="modal-tip">发布后约 30~90 秒，所有访问者打开网页将看到以下这份数据：</p>
+      <ul id="confirmSummary" class="confirm-list"></ul>
+      <div class="modal-actions">
+        <span style="flex:1"></span>
+        <button id="confirmCancel" class="mini-btn" type="button">取消（Esc）</button>
+        <button id="confirmOk" class="mini-btn primary" type="button">确认发布（Ctrl+Enter）</button>
+      </div>
+    </div>
+  </div>
+
   <div id="loading" class="loading-mask" style="display:none">
     <div class="spinner"></div><span id="loadingText">正在解析 Excel…</span>
   </div>
 
-  <script src="./parser.js?v=1.4.0"></script>
-  <script src="./view.js?v=1.4.0"></script>
-  <script src="./admin-app.js?v=1.4.0"></script>
+  <script src="./access-code.js?v=1.6.0"></script>
+  <script src="./parser.js?v=1.6.0"></script>
+  <script src="./view.js?v=1.6.0"></script>
+  <script src="./admin-app.js?v=1.6.0"></script>
 </body>
 </html>

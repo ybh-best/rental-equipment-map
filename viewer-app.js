@@ -1,4 +1,4 @@
-/* 访问者页入口：只读拉取管理员已发布的数据（data/result.json），无任何上传能力 */
+/* 访问者页入口：密码门 + 只读拉取管理员已发布的数据（data/result.json），无任何上传能力 */
 const $ = (id) => document.getElementById(id);
 
 const view = new DataView({
@@ -10,9 +10,7 @@ const view = new DataView({
   sub: $('tableSub'),
   map: $('mapChart'),
   mapTitle: $('mapTitle'),
-  unknownCard: $('unknownCard'),
-  unknownText: $('unknownText'),
-  unknownSamples: $('unknownSamples'),
+  placeholder: $('mapPlaceholder'),
 });
 
 window.addEventListener('resize', () => view.resize());
@@ -36,8 +34,6 @@ function showEmpty(message) {
   if (phText) phText.textContent = message;
   const ph = $('mapPlaceholder');
   if (ph) ph.style.display = '';
-  const card = $('unknownCard');
-  if (card) card.style.display = 'none';
   const info = $('publishInfo');
   if (info) info.textContent = '';
 }
@@ -77,4 +73,42 @@ async function loadPublished() {
 }
 
 $('refreshBtn').addEventListener('click', loadPublished);
-loadPublished();
+
+/* ---------------- 每日动态密码门 ---------------- */
+let started = false;
+function start() {
+  if (started) return;
+  started = true;
+  loadPublished();
+}
+function codeOk(v) {
+  return String(v || '').trim() === RentalAccess.today();
+}
+function grant(v) {
+  sessionStorage.setItem(RentalAccess.AUTH_KEY, RentalAccess.today());
+  $('gateMask').style.display = 'none';
+  start();
+}
+$('gateForm').addEventListener('submit', (e) => {
+  e.preventDefault();
+  const v = $('gateInput').value;
+  if (codeOk(v)) {
+    grant(v);
+  } else {
+    $('gateErr').textContent = '密码不正确，请向管理员确认今天的 6 位密码';
+    $('gateInput').value = '';
+    $('gateInput').focus();
+  }
+});
+
+// 支持带密码直链 index.html?p=123456（管理员可直接复制链接发给访问者）
+const urlCode = new URLSearchParams(location.search).get('p');
+if (urlCode && codeOk(urlCode)) {
+  grant(urlCode);
+} else if (sessionStorage.getItem(RentalAccess.AUTH_KEY) === RentalAccess.today()) {
+  // 同一标签会话内已输过今日密码，不再重复询问
+  start();
+} else {
+  $('gateMask').style.display = 'flex';
+  $('gateInput').focus();
+}

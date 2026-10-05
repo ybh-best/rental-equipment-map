@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>门店在租设备分布图</title>
-  <link rel="stylesheet" href="./style.css?v=1.4.0">
+  <link rel="stylesheet" href="./style.css?v=1.5.0">
   <script src="./echarts.min.js" onerror="this.onerror=null;this.src='https://registry.npmmirror.com/echarts/5.5.1/files/dist/echarts.min.js'"></script>
 </head>
 <body>
@@ -13,9 +13,9 @@
       <span class="logo">📍</span>
       <div>
         <h1>门店在租设备分布图</h1>
-        <p>剪刀车 / 臂车 · 业务员汇总 · 湖北省区域分布（武汉精确到区）</p>
+        <p>剪刀车 / 臂车 · 业务员汇总 · 湖北省区域分布（武汉合并为四大区域）</p>
       </div>
-      <span class="ver">v1.4.0</span>
+      <span class="ver">v1.5.0</span>
     </div>
     <div class="toolbar">
       <div class="select-wrap">
@@ -74,13 +74,8 @@
         <div class="map-placeholder" id="mapPlaceholder">
           <div class="ph-icon">🗺️</div>
           <p id="placeholderText">正在加载数据…</p>
-          <p class="ph-tip">武汉按行政区展示，其他地区按市州汇总</p>
+          <p class="ph-tip">武汉合并为四大区域，其他地区按市州汇总</p>
         </div>
-      </div>
-      <div id="unknownCard" class="unknown-card" style="display:none">
-        <b>⚠️ 未识别区域：</b>
-        <span id="unknownText"></span>
-        <div id="unknownSamples" class="unknown-samples"></div>
       </div>
     </section>
   </main>
@@ -90,7 +85,21 @@
     <a href="./admin.html" class="admin-link" title="管理员入口">管理</a>
   </footer>
 
-  <script src="./view.js?v=1.4.0"></script>
-  <script src="./viewer-app.js?v=1.4.0"></script>
+  <!-- 访问密码门 -->
+  <div id="gateMask" class="gate-mask" style="display:none">
+    <form id="gateForm" class="gate-card" autocomplete="off">
+      <div class="gate-icon">🔐</div>
+      <h2>门店在租设备分布图</h2>
+      <p class="gate-tip">请输入<b>今日访问密码</b>（6 位数字，向管理员索取，每天更新）</p>
+      <input id="gateInput" class="gate-input" type="password" inputmode="numeric"
+             maxlength="6" placeholder="6 位今日密码">
+      <div id="gateErr" class="gate-err"></div>
+      <button type="submit" class="gate-btn">进入查看</button>
+    </form>
+  </div>
+
+  <script src="./access-code.js?v=1.5.0"></script>
+  <script src="./view.js?v=1.5.0"></script>
+  <script src="./viewer-app.js?v=1.5.0"></script>
 </body>
 </html>
