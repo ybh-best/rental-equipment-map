@@ -1,1 +1,254 @@
-LyogPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09CiAqIOeuoeeQhuWRmOmhte+8muacrOWcsOino+aekCBFeGNlbCDihpIg6aKE6KeIIOKGkiDnu48gR2l0SHViIENvbnRlbnRzIEFQSSDlj5HluIMKICogVG9rZW4g5LuF5a2Y5LqO5pys5py65rWP6KeI5ZmoIGxvY2FsU3RvcmFnZe+8jOS4jeWGmeWFpeS7u+S9leWFrOW8gOaWh+S7tgogKiA9PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT0gKi8KY29uc3QgT1dORVIgPSAneWJoLWJlc3QnOwpjb25zdCBSRVBPID0gJ3JlbnRhbC1lcXVpcG1lbnQtbWFwJzsKY29uc3QgQlJBTkNIID0gJ21haW4nOwpjb25zdCBEQVRBX1BBVEggPSAnZGF0YS9yZXN1bHQuanNvbic7CmNvbnN0IFRPS0VOX0tFWSA9ICdnaF9wYXRfcmVudGFsX2VxdWlwbWVudF9tYXAnOwoKY29uc3QgJCA9IChpZCkgPT4gZG9jdW1lbnQuZ2V0RWxlbWVudEJ5SWQoaWQpOwpsZXQgREFUQSA9IG51bGw7ICAgICAgIC8vIOW9k+WJjeino+aekOe7k+aenApsZXQgbGFzdEZpbGUgPSBudWxsOwpsZXQgZ2hVc2VyID0gbnVsbDsKCmNvbnN0IHZpZXcgPSBuZXcgRGF0YVZpZXcoewogIHRib2R5OiAkKCdzYWxlc1Rib2R5JyksCiAgc3VtU2Npc3NvcjogJCgnc3VtU2Npc3NvcicpLAogIHN1bUJvb206ICQoJ3N1bUJvb20nKSwKICBzdW1tYXJ5Um93OiAkKCdzdW1tYXJ5Um93JyksCiAgc2VsZWN0OiBudWxsLCAvLyDnrqHnkIblkZjpooTop4jpobXkuI3mlL7kuIvmi4nvvIjmlbTlvKDlm77ljbPlhajph4/pooTop4jvvIkKICBzdWI6ICQoJ3RhYmxlU3ViJyksCiAgbWFwOiAkKCdtYXBDaGFydCcpLAogIG1hcFRpdGxlOiAkKCdtYXBUaXRsZScpLAogIHVua25vd25DYXJkOiAkKCd1bmtub3duQ2FyZCcpLAogIHVua25vd25UZXh0OiAkKCd1bmtub3duVGV4dCcpLAogIHVua25vd25TYW1wbGVzOiAkKCd1bmtub3duU2FtcGxlcycpLAp9KTsKd2luZG93LmFkZEV2ZW50TGlzdGVuZXIoJ3Jlc2l6ZScsICgpID0+IHZpZXcucmVzaXplKCkpOwoKLyogLS0tLS0tLS0tLS0tLS0tLSBUb2tlbiDnrqHnkIYgLS0tLS0tLS0tLS0tLS0tLSAqLwpmdW5jdGlvbiBnZXRUb2tlbigpIHsgcmV0dXJuIGxvY2FsU3RvcmFnZS5nZXRJdGVtKFRPS0VOX0tFWSkgfHwgJyc7IH0KZnVuY3Rpb24gc2V0VG9rZW4odikgeyBsb2NhbFN0b3JhZ2Uuc2V0SXRlbShUT0tFTl9LRVksIHYudHJpbSgpKTsgfQpmdW5jdGlvbiBjbGVhclRva2VuKCkgeyBsb2NhbFN0b3JhZ2UucmVtb3ZlSXRlbShUT0tFTl9LRVkpOyB9Cgphc3luYyBmdW5jdGlvbiB2ZXJpZnlUb2tlbih0b2tlbikgewogIGNvbnN0IHJlc3AgPSBhd2FpdCBmZXRjaCgnaHR0cHM6Ly9hcGkuZ2l0aHViLmNvbS91c2VyJywgewogICAgaGVhZGVyczogewogICAgICBBdXRob3JpemF0aW9uOiAnQmVhcmVyICcgKyB0b2tlbiwKICAgICAgQWNjZXB0OiAnYXBwbGljYXRpb24vdm5kLmdpdGh1Yitqc29uJywKICAgICAgJ1gtR2l0SHViLUFwaS1WZXJzaW9uJzogJzIwMjItMTEtMjgnLAogICAgfSwKICB9KTsKICBpZiAoIXJlc3Aub2spIHsKICAgIGNvbnN0IHQgPSBhd2FpdCByZXNwLnRleHQoKS5jYXRjaCgoKSA9PiAnJyk7CiAgICB0aHJvdyBuZXcgRXJyb3IoYFRva2VuIOaXoOaViOaIluW3sui/h+acn++8iCR7cmVzcC5zdGF0dXN977yJJHt0ID8gJ++8micgKyB0LnNsaWNlKDAsIDEyMCkgOiAnJ31gKTsKICB9CiAgcmV0dXJuIHJlc3AuanNvbigpOwp9Cgphc3luYyBmdW5jdGlvbiByZWZyZXNoVG9rZW5TdGF0dXMoKSB7CiAgY29uc3QgdG9rZW4gPSBnZXRUb2tlbigpOwogIGlmICghdG9rZW4pIHsKICAgIGdoVXNlciA9IG51bGw7CiAgICAkKCd0b2tlbkJ0bicpLnRleHRDb250ZW50ID0gJ+iuvue9riBUb2tlbic7CiAgICAkKCd0b2tlblN0YXR1cycpLnRleHRDb250ZW50ID0gJ+acquiuvue9ru+8iOWPkeW4g+WJjeW/hemhu+iuvue9ru+8iSc7CiAgICAkKCd0b2tlblN0YXR1cycpLmNsYXNzTmFtZSA9ICdzdGVwLXN0YXR1cyB3YXJuJzsKICAgIHVwZGF0ZVB1Ymxpc2hCdG4oKTsKICAgIHJldHVybjsKICB9CiAgJCgndG9rZW5TdGF0dXMnKS50ZXh0Q29udGVudCA9ICfpqozor4HkuK3igKYnOwogICQoJ3Rva2VuU3RhdHVzJykuY2xhc3NOYW1lID0gJ3N0ZXAtc3RhdHVzJzsKICB0cnkgewogICAgZ2hVc2VyID0gYXdhaXQgdmVyaWZ5VG9rZW4odG9rZW4pOwogICAgJCgndG9rZW5CdG4nKS50ZXh0Q29udGVudCA9ICfmm7TmjaIgVG9rZW4nOwogICAgJCgndG9rZW5TdGF0dXMnKS5pbm5lckhUTUwgPSBg4pyFIOW3sui/nuaOpSA8Yj4ke2doVXNlci5sb2dpbn08L2I+YDsKICAgICQoJ3Rva2VuU3RhdHVzJykuY2xhc3NOYW1lID0gJ3N0ZXAtc3RhdHVzIG9rJzsKICB9IGNhdGNoIChlKSB7CiAgICBnaFVzZXIgPSBudWxsOwogICAgJCgndG9rZW5CdG4nKS50ZXh0Q29udGVudCA9ICfph43mlrDorr7nva4gVG9rZW4nOwogICAgJCgndG9rZW5TdGF0dXMnKS50ZXh0Q29udGVudCA9ICfinYwgJyArIGUubWVzc2FnZTsKICAgICQoJ3Rva2VuU3RhdHVzJykuY2xhc3NOYW1lID0gJ3N0ZXAtc3RhdHVzIGVycic7CiAgfQogIHVwZGF0ZVB1Ymxpc2hCdG4oKTsKfQoKJCgndG9rZW5CdG4nKS5hZGRFdmVudExpc3RlbmVyKCdjbGljaycsICgpID0+IHsKICAkKCd0b2tlbklucHV0JykudmFsdWUgPSBnZXRUb2tlbigpOwogICQoJ3Rva2VuTXNnJykudGV4dENvbnRlbnQgPSAnJzsKICAkKCd0b2tlbk1vZGFsJykuc3R5bGUuZGlzcGxheSA9ICdmbGV4JzsKfSk7CiQoJ3Rva2VuQ2FuY2VsJykuYWRkRXZlbnRMaXN0ZW5lcignY2xpY2snLCAoKSA9PiB7ICQoJ3Rva2VuTW9kYWwnKS5zdHlsZS5kaXNwbGF5ID0gJ25vbmUnOyB9KTsKJCgndG9rZW5TYXZlJykuYWRkRXZlbnRMaXN0ZW5lcignY2xpY2snLCBhc3luYyAoKSA9PiB7CiAgY29uc3QgdiA9ICQoJ3Rva2VuSW5wdXQnKS52YWx1ZS50cmltKCk7CiAgaWYgKCF2KSB7ICQoJ3Rva2VuTXNnJykudGV4dENvbnRlbnQgPSAn6K+357KY6LS0IFRva2VuJzsgJCgndG9rZW5Nc2cnKS5jbGFzc05hbWUgPSAnbW9kYWwtbXNnIGVycic7IHJldHVybjsgfQogICQoJ3Rva2VuTXNnJykudGV4dENvbnRlbnQgPSAn5q2j5Zyo6aqM6K+B4oCmJzsKICAkKCd0b2tlbk1zZycpLmNsYXNzTmFtZSA9ICdtb2RhbC1tc2cnOwogIHRyeSB7CiAgICBjb25zdCB1ID0gYXdhaXQgdmVyaWZ5VG9rZW4odik7CiAgICBzZXRUb2tlbih2KTsKICAgIGdoVXNlciA9IHU7CiAgICAkKCd0b2tlbk1vZGFsJykuc3R5bGUuZGlzcGxheSA9ICdub25lJzsKICAgIHJlZnJlc2hUb2tlblN0YXR1cygpOwogIH0gY2F0Y2ggKGUpIHsKICAgICQoJ3Rva2VuTXNnJykudGV4dENvbnRlbnQgPSBlLm1lc3NhZ2U7CiAgICAkKCd0b2tlbk1zZycpLmNsYXNzTmFtZSA9ICdtb2RhbC1tc2cgZXJyJzsKICB9Cn0pOwokKCd0b2tlbkNsZWFyJykuYWRkRXZlbnRMaXN0ZW5lcignY2xpY2snLCAoKSA9PiB7CiAgY2xlYXJUb2tlbigpOwogICQoJ3Rva2VuSW5wdXQnKS52YWx1ZSA9ICcnOwogICQoJ3Rva2VuTXNnJykudGV4dENvbnRlbnQgPSAn5bey5riF6Zmk77yI5L+d5a2Y5YWz6Zet5ZCO55Sf5pWI77yJJzsKICAkKCd0b2tlbk1zZycpLmNsYXNzTmFtZSA9ICdtb2RhbC1tc2cgd2Fybic7CiAgcmVmcmVzaFRva2VuU3RhdHVzKCk7Cn0pOwoKLyogLS0tLS0tLS0tLS0tLS0tLSBFeGNlbCDkuIrkvKDop6PmnpDvvIjmnKzlnLDvvIkgLS0tLS0tLS0tLS0tLS0tLSAqLwokKCdmaWxlSW5wdXQnKS5hZGRFdmVudExpc3RlbmVyKCdjaGFuZ2UnLCAoKSA9PiB7CiAgaWYgKCQoJ2ZpbGVJbnB1dCcpLmZpbGVzLmxlbmd0aCkgewogICAgbGFzdEZpbGUgPSAkKCdmaWxlSW5wdXQnKS5maWxlc1swXTsKICAgIHBhcnNlRmlsZShsYXN0RmlsZSk7CiAgfQp9KTsKJCgncmVudGVkT25seScpLmFkZEV2ZW50TGlzdGVuZXIoJ2NoYW5nZScsICgpID0+IHsgaWYgKGxhc3RGaWxlKSBwYXJzZUZpbGUobGFzdEZpbGUpOyB9KTsKCmFzeW5jIGZ1bmN0aW9uIHBhcnNlRmlsZShmaWxlKSB7CiAgbGFzdEZpbGUgPSBmaWxlOwogIGNvbnN0IGV4dCA9IGZpbGUubmFtZS50b0xvd2VyQ2FzZSgpLnNwbGl0KCcuJykucG9wKCk7CiAgaWYgKGV4dCAhPT0gJ3hsc3gnICYmIGV4dCAhPT0gJ3hsc20nKSB7CiAgICBhbGVydCgn5LuF5pSv5oyBIC54bHN4IOagvOW8j+aWh+S7tu+8jOivt+WwhiAueGxzIOWPpuWtmOS4uiAueGxzeCDlkI7kuIrkvKAnKTsKICAgIHJldHVybjsKICB9CiAgJCgnbG9hZGluZ1RleHQnKS50ZXh0Q29udGVudCA9ICfmraPlnKjmtY/op4jlmajmnKzlnLDop6PmnpAgRXhjZWzigKYnOwogICQoJ2xvYWRpbmcnKS5zdHlsZS5kaXNwbGF5ID0gJ2ZsZXgnOwogIHRyeSB7CiAgICBhd2FpdCBsb2FkUmVnaW9ucygpOwogICAgY29uc3QgYnVmZmVyID0gYXdhaXQgZmlsZS5hcnJheUJ1ZmZlcigpOwogICAgREFUQSA9IGFuYWx5emVXb3JrYm9vayhidWZmZXIsIGZpbGUubmFtZSwgJCgncmVudGVkT25seScpLmNoZWNrZWQpOwogICAgYXdhaXQgdmlldy5sb2FkR2VvKCk7CiAgICB2aWV3LnNldERhdGEoREFUQSk7CiAgICBsZXQgbXNnID0gYOKchSDlt7Lop6PmnpDvvJrlhbEgJHtEQVRBLnRvdGFsUm93c30g6KGM77yM6K6h5YWlICR7REFUQS5jb3VudGVkUm93c30g5Y+wYDsKICAgIGlmIChEQVRBLmZpbHRlcmVkT3V0ID4gMCkgbXNnICs9IGDvvIjmjpLpmaTpnZ7lnKjnp58gJHtEQVRBLmZpbHRlcmVkT3V0fSDlj7DvvIlgOwogICAgbXNnICs9IGAgwrcg5Ymq5YiA6L2mICR7REFUQS50b3RhbHMuc2Npc3Nvcn0gLyDoh4LovaYgJHtEQVRBLnRvdGFscy5ib29tfe+8jOaguOWvueaXoOivr+WQjuivt+WPkeW4g2A7CiAgICAkKCdwYXJzZVN0YXR1cycpLnRleHRDb250ZW50ID0gbXNnOwogICAgJCgncGFyc2VTdGF0dXMnKS5jbGFzc05hbWUgPSAnc3RlcC1zdGF0dXMgb2snOwogICAgJCgndGFibGVTdWInKS50ZXh0Q29udGVudCA9IGDlhbEgJHtEQVRBLnNhbGVzcGVvcGxlLmxlbmd0aH0g5L2N5Lia5Yqh5ZGYIMK3IOatpOS4uuWPkeW4g+WQjuiuv+mXruiAheaJgOingeaVsOaNrmA7CiAgfSBjYXRjaCAoZSkgewogICAgREFUQSA9IG51bGw7CiAgICAkKCdwYXJzZVN0YXR1cycpLnRleHRDb250ZW50ID0gJ+KdjCAnICsgKGUubWVzc2FnZSB8fCAn6Kej5p6Q5aSx6LSlJyk7CiAgICAkKCdwYXJzZVN0YXR1cycpLmNsYXNzTmFtZSA9ICdzdGVwLXN0YXR1cyBlcnInOwogIH0gZmluYWxseSB7CiAgICAkKCdsb2FkaW5nJykuc3R5bGUuZGlzcGxheSA9ICdub25lJzsKICAgIHVwZGF0ZVB1Ymxpc2hCdG4oKTsKICB9Cn0KCi8qIC0tLS0tLS0tLS0tLS0tLS0g5Y+R5biDIC0tLS0tLS0tLS0tLS0tLS0gKi8KZnVuY3Rpb24gdXBkYXRlUHVibGlzaEJ0bigpIHsKICAkKCdwdWJsaXNoQnRuJykuZGlzYWJsZWQgPSAhKERBVEEgJiYgZ2hVc2VyKTsKICAkKCdwdWJsaXNoQnRuJykudGl0bGUgPSAhREFUQSA/ICfor7flhYjkuIrkvKDlubbmiJDlip/op6PmnpAgRXhjZWwnCiAgICA6ICghZ2hVc2VyID8gJ+ivt+WFiOiuvue9ruW5tumqjOivgSBHaXRIdWIgVG9rZW4nIDogJ+WwhuW9k+WJjemihOiniOaVsOaNruWPkeW4g+WIsOWFrOe9kemhtemdoicpOwp9CgpmdW5jdGlvbiBiNjRVbmljb2RlKHN0cikgewogIHJldHVybiBidG9hKEFycmF5LmZyb20obmV3IFRleHRFbmNvZGVyKCkuZW5jb2RlKHN0ciksIChiKSA9PiBTdHJpbmcuZnJvbUNoYXJDb2RlKGIpKS5qb2luKCcnKSk7Cn0KCmFzeW5jIGZ1bmN0aW9uIGdpdGh1YkFwaShwYXRoLCBvcHRpb25zID0ge30pIHsKICBjb25zdCByZXNwID0gYXdhaXQgZmV0Y2goJ2h0dHBzOi8vYXBpLmdpdGh1Yi5jb20nICsgcGF0aCwgewogICAgLi4ub3B0aW9ucywKICAgIGhlYWRlcnM6IHsKICAgICAgQXV0aG9yaXphdGlvbjogJ0JlYXJlciAnICsgZ2V0VG9rZW4oKSwKICAgICAgQWNjZXB0OiAnYXBwbGljYXRpb24vdm5kLmdpdGh1Yitqc29uJywKICAgICAgJ1gtR2l0SHViLUFwaS1WZXJzaW9uJzogJzIwMjItMTEtMjgnLAogICAgICAuLi4ob3B0aW9ucy5oZWFkZXJzIHx8IHt9KSwKICAgIH0sCiAgfSk7CiAgY29uc3QgdGV4dCA9IGF3YWl0IHJlc3AudGV4dCgpOwogIGxldCBib2R5ID0gbnVsbDsKICB0cnkgeyBib2R5ID0gdGV4dCA/IEpTT04ucGFyc2UodGV4dCkgOiBudWxsOyB9IGNhdGNoIChlKSB7IGJvZHkgPSB0ZXh0OyB9CiAgaWYgKCFyZXNwLm9rKSB7CiAgICBjb25zdCBtc2cgPSAoYm9keSAmJiBib2R5Lm1lc3NhZ2UpID8gYm9keS5tZXNzYWdlIDogKCdIVFRQICcgKyByZXNwLnN0YXR1cyk7CiAgICB0aHJvdyBuZXcgRXJyb3IobXNnICsgKGJvZHkgJiYgYm9keS5lcnJvcnMgPyAnICcgKyBKU09OLnN0cmluZ2lmeShib2R5LmVycm9ycykgOiAnJykpOwogIH0KICByZXR1cm4gYm9keTsKfQoKJCgncHVibGlzaEJ0bicpLmFkZEV2ZW50TGlzdGVuZXIoJ2NsaWNrJywgYXN5bmMgKCkgPT4gewogIGlmICghREFUQSB8fCAhZ2hVc2VyKSByZXR1cm47CiAgaWYgKCFjb25maXJtKCfnoa7orqTlsIblvZPliY3pooTop4jmlbDmja7lj5HluIPliLDlhaznvZHvvJ9cbuWPkeW4g+WQjue6piAxIOWIhumSn++8jOaJgOacieiuv+mXruiAheaJk+W8gOe9kemhteWwhueci+WIsOi/meS7veaVsOaNruOAgicpKSByZXR1cm47CgogIGNvbnN0IHVwZGF0ZWRBdCA9IG5ldyBEYXRlKCkudG9JU09TdHJpbmcoKTsKICBjb25zdCB3cmFwcGVyID0gewogICAgcHVibGlzaGVkOiB0cnVlLAogICAgdXBkYXRlZEF0LAogICAgZmlsZU5hbWU6IERBVEEuZmlsZU5hbWUsCiAgICByZW50ZWRPbmx5OiBEQVRBLnJlbnRlZE9ubHksCiAgICBwYXlsb2FkOiBEQVRBLAogIH07CiAgY29uc3QgY29udGVudCA9IGI2NFVuaWNvZGUoSlNPTi5zdHJpbmdpZnkod3JhcHBlcikpOwoKICAkKCdwdWJsaXNoQnRuJykuZGlzYWJsZWQgPSB0cnVlOwogICQoJ3B1Ymxpc2hTdGF0dXMnKS50ZXh0Q29udGVudCA9ICfij7Mg5q2j5Zyo5o+Q5Lqk5YiwIEdpdEh1YuKApic7CiAgJCgncHVibGlzaFN0YXR1cycpLmNsYXNzTmFtZSA9ICdzdGVwLXN0YXR1cyc7CiAgdHJ5IHsKICAgIC8vIOiOt+WPlueOsOacieaWh+S7tiBzaGHvvIjmm7TmlrDlv4XpnIDvvJvpppbmrKHlj5HluIPkuI3lrZjlnKjliJnml6Agc2hh77yJCiAgICBsZXQgc2hhID0gbnVsbDsKICAgIHRyeSB7CiAgICAgIGNvbnN0IGV4aXN0aW5nID0gYXdhaXQgZ2l0aHViQXBpKGAvcmVwb3MvJHtPV05FUn0vJHtSRVBPfS9jb250ZW50cy8ke0RBVEFfUEFUSH0/cmVmPSR7QlJBTkNIfWApOwogICAgICBzaGEgPSBleGlzdGluZy5zaGE7CiAgICB9IGNhdGNoIChlKSB7CiAgICAgIGlmICghL05vdCBGb3VuZC9pLnRlc3QoZS5tZXNzYWdlKSkgdGhyb3cgZTsKICAgIH0KCiAgICBhd2FpdCBnaXRodWJBcGkoYC9yZXBvcy8ke09XTkVSfS8ke1JFUE99L2NvbnRlbnRzLyR7REFUQV9QQVRIfWAsIHsKICAgICAgbWV0aG9kOiAnUFVUJywKICAgICAgaGVhZGVyczogeyAnQ29udGVudC1UeXBlJzogJ2FwcGxpY2F0aW9uL2pzb24nIH0sCiAgICAgIGJvZHk6IEpTT04uc3RyaW5naWZ5KHsKICAgICAgICBtZXNzYWdlOiBg5Y+R5biD5Zyo56ef5pWw5o2uICR7REFUQS5maWxlTmFtZX0gQCAke3VwZGF0ZWRBdC5yZXBsYWNlKCdUJywgJyAnKS5zbGljZSgwLCAxNil9YCwKICAgICAgICBjb250ZW50LAogICAgICAgIHNoYSwKICAgICAgICBicmFuY2g6IEJSQU5DSCwKICAgICAgfSksCiAgICB9KTsKICAgICQoJ3B1Ymxpc2hTdGF0dXMnKS5pbm5lckhUTUwgPQogICAgICBg4piB77iPIOW3suaPkOS6pO+8jOetieW+hSBHaXRIdWIgUGFnZXMg5p6E5bu655Sf5pWI77yI6YCa5bi4IDMwfjkwIOenku+8ieKApmA7CiAgICAkKCdwdWJsaXNoU3RhdHVzJykuY2xhc3NOYW1lID0gJ3N0ZXAtc3RhdHVzIG9rJzsKICAgIGF3YWl0IHdhaXRMaXZlKHVwZGF0ZWRBdCk7CiAgfSBjYXRjaCAoZSkgewogICAgJCgncHVibGlzaFN0YXR1cycpLnRleHRDb250ZW50ID0gJ+KdjCDlj5HluIPlpLHotKXvvJonICsgZS5tZXNzYWdlOwogICAgJCgncHVibGlzaFN0YXR1cycpLmNsYXNzTmFtZSA9ICdzdGVwLXN0YXR1cyBlcnInOwogICAgdXBkYXRlUHVibGlzaEJ0bigpOwogIH0KfSk7Cgphc3luYyBmdW5jdGlvbiB3YWl0TGl2ZSh1cGRhdGVkQXQpIHsKICBjb25zdCBkZWFkbGluZSA9IERhdGUubm93KCkgKyAzICogNjAgKiAxMDAwOwogIHdoaWxlIChEYXRlLm5vdygpIDwgZGVhZGxpbmUpIHsKICAgIGF3YWl0IG5ldyBQcm9taXNlKChyKSA9PiBzZXRUaW1lb3V0KHIsIDgwMDApKTsKICAgIHRyeSB7CiAgICAgIGNvbnN0IHJlc3AgPSBhd2FpdCBmZXRjaChgLi9kYXRhL3Jlc3VsdC5qc29uP3Q9JHtEYXRlLm5vdygpfWAsIHsgY2FjaGU6ICduby1zdG9yZScgfSk7CiAgICAgIGlmIChyZXNwLm9rKSB7CiAgICAgICAgY29uc3QgbGl2ZSA9IGF3YWl0IHJlc3AuanNvbigpOwogICAgICAgIGlmIChsaXZlICYmIGxpdmUudXBkYXRlZEF0ID09PSB1cGRhdGVkQXQpIHsKICAgICAgICAgICQoJ3B1Ymxpc2hTdGF0dXMnKS5pbm5lckhUTUwgPQogICAgICAgICAgICBg8J+OiSDlt7LnlJ/mlYjvvIHorr/pl67ogIXnjrDlnKjnnIvliLDnmoTlsLHmmK/ov5nku73mlbDmja7jgIJgICsKICAgICAgICAgICAgYCA8YSBocmVmPSIuL2luZGV4Lmh0bWwiIHRhcmdldD0iX2JsYW5rIj7miZPlvIDorr/pl67ogIXpobXpnaIg4oaSPC9hPmA7CiAgICAgICAgICAkKCdwdWJsaXNoU3RhdHVzJykuY2xhc3NOYW1lID0gJ3N0ZXAtc3RhdHVzIG9rJzsKICAgICAgICAgIHVwZGF0ZVB1Ymxpc2hCdG4oKTsKICAgICAgICAgIHJldHVybjsKICAgICAgICB9CiAgICAgIH0KICAgIH0gY2F0Y2ggKGUpIHsgLyog6L2u6K+i5Lit572R57uc5oqW5Yqo5b+955WlICovIH0KICAgICQoJ3B1Ymxpc2hTdGF0dXMnKS50ZXh0Q29udGVudCA9ICfimIHvuI8g5bey5o+Q5Lqk77yM562J5b6FIFBhZ2VzIOeUn+aViOS4reKApu+8iOWPr+eojeWAmeaJi+WKqOWIt+aWsOiuv+mXrumhteehruiupO+8iSc7CiAgfQogICQoJ3B1Ymxpc2hTdGF0dXMnKS5pbm5lckhUTUwgPQogICAgYOKYge+4jyDlt7Lmj5DkuqTjgIJQYWdlcyDmnoTlu7rlj6/og73nqI3mhaLvvIzor7cgMX4yIOWIhumSn+WQjuaJk+W8gGAgKwogICAgYCA8YSBocmVmPSIuL2luZGV4Lmh0bWwiIHRhcmdldD0iX2JsYW5rIj7orr/pl67ogIXpobXpnaI8L2E+IOehruiupOOAgmA7CiAgJCgncHVibGlzaFN0YXR1cycpLmNsYXNzTmFtZSA9ICdzdGVwLXN0YXR1cyB3YXJuJzsKICB1cGRhdGVQdWJsaXNoQnRuKCk7Cn0KCi8qIC0tLS0tLS0tLS0tLS0tLS0g5Yid5aeL5YyWIC0tLS0tLS0tLS0tLS0tLS0gKi8KcmVmcmVzaFRva2VuU3RhdHVzKCk7Cg==
+/* ============================================================
+ * 管理员页：本地解析 Excel → 预览 → 经 GitHub Contents API 发布
+ * Token 仅存于本机浏览器 localStorage，不写入任何公开文件
+ * ============================================================ */
+const OWNER = 'ybh-best';
+const REPO = 'rental-equipment-map';
+const BRANCH = 'main';
+const DATA_PATH = 'data/result.json';
+const TOKEN_KEY = 'gh_pat_rental_equipment_map';
+
+const $ = (id) => document.getElementById(id);
+let DATA = null;       // 当前解析结果
+let lastFile = null;
+let ghUser = null;
+
+const view = new DataView({
+  tbody: $('salesTbody'),
+  sumScissor: $('sumScissor'),
+  sumBoom: $('sumBoom'),
+  summaryRow: $('summaryRow'),
+  select: null, // 管理员预览页不放下拉（整张图即全量预览）
+  sub: $('tableSub'),
+  map: $('mapChart'),
+  mapTitle: $('mapTitle'),
+  unknownCard: $('unknownCard'),
+  unknownText: $('unknownText'),
+  unknownSamples: $('unknownSamples'),
+});
+window.addEventListener('resize', () => view.resize());
+
+/* ---------------- Token 管理 ---------------- */
+function getToken() { return localStorage.getItem(TOKEN_KEY) || ''; }
+function setToken(v) { localStorage.setItem(TOKEN_KEY, v.trim()); }
+function clearToken() { localStorage.removeItem(TOKEN_KEY); }
+
+async function verifyToken(token) {
+  const resp = await fetch('https://api.github.com/user', {
+    headers: {
+      Authorization: 'Bearer ' + token,
+      Accept: 'application/vnd.github+json',
+      'X-GitHub-Api-Version': '2022-11-28',
+    },
+  });
+  if (!resp.ok) {
+    const t = await resp.text().catch(() => '');
+    throw new Error(`Token 无效或已过期（${resp.status}）${t ? '：' + t.slice(0, 120) : ''}`);
+  }
+  return resp.json();
+}
+
+async function refreshTokenStatus() {
+  const token = getToken();
+  if (!token) {
+    ghUser = null;
+    $('tokenBtn').textContent = '设置 Token';
+    $('tokenStatus').textContent = '未设置（发布前必须设置）';
+    $('tokenStatus').className = 'step-status warn';
+    updatePublishBtn();
+    return;
+  }
+  $('tokenStatus').textContent = '验证中…';
+  $('tokenStatus').className = 'step-status';
+  try {
+    ghUser = await verifyToken(token);
+    $('tokenBtn').textContent = '更换 Token';
+    $('tokenStatus').innerHTML = `✅ 已连接 <b>${ghUser.login}</b>`;
+    $('tokenStatus').className = 'step-status ok';
+  } catch (e) {
+    ghUser = null;
+    $('tokenBtn').textContent = '重新设置 Token';
+    $('tokenStatus').textContent = '❌ ' + e.message;
+    $('tokenStatus').className = 'step-status err';
+  }
+  updatePublishBtn();
+}
+
+$('tokenBtn').addEventListener('click', () => {
+  $('tokenInput').value = getToken();
+  $('tokenMsg').textContent = '';
+  $('tokenModal').style.display = 'flex';
+});
+$('tokenCancel').addEventListener('click', () => { $('tokenModal').style.display = 'none'; });
+$('tokenSave').addEventListener('click', async () => {
+  const v = $('tokenInput').value.trim();
+  if (!v) { $('tokenMsg').textContent = '请粘贴 Token'; $('tokenMsg').className = 'modal-msg err'; return; }
+  $('tokenMsg').textContent = '正在验证…';
+  $('tokenMsg').className = 'modal-msg';
+  try {
+    const u = await verifyToken(v);
+    setToken(v);
+    ghUser = u;
+    $('tokenModal').style.display = 'none';
+    refreshTokenStatus();
+  } catch (e) {
+    $('tokenMsg').textContent = e.message;
+    $('tokenMsg').className = 'modal-msg err';
+  }
+});
+$('tokenClear').addEventListener('click', () => {
+  clearToken();
+  $('tokenInput').value = '';
+  $('tokenMsg').textContent = '已清除（保存关闭后生效）';
+  $('tokenMsg').className = 'modal-msg warn';
+  refreshTokenStatus();
+});
+
+/* ---------------- Excel 上传解析（本地） ---------------- */
+$('fileInput').addEventListener('change', () => {
+  if ($('fileInput').files.length) {
+    lastFile = $('fileInput').files[0];
+    parseFile(lastFile);
+  }
+});
+$('rentedOnly').addEventListener('change', () => { if (lastFile) parseFile(lastFile); });
+
+async function parseFile(file) {
+  lastFile = file;
+  const ext = file.name.toLowerCase().split('.').pop();
+  if (ext !== 'xlsx' && ext !== 'xlsm') {
+    alert('仅支持 .xlsx 格式文件，请将 .xls 另存为 .xlsx 后上传');
+    return;
+  }
+  $('loadingText').textContent = '正在浏览器本地解析 Excel…';
+  $('loading').style.display = 'flex';
+  try {
+    await loadRegions();
+    const buffer = await file.arrayBuffer();
+    DATA = analyzeWorkbook(buffer, file.name, $('rentedOnly').checked);
+    await view.loadGeo();
+    view.setData(DATA);
+    let msg = `✅ 已解析：共 ${DATA.totalRows} 行，计入 ${DATA.countedRows} 台`;
+    if (DATA.filteredOut > 0) msg += `（排除非在租 ${DATA.filteredOut} 台）`;
+    msg += ` · 剪刀车 ${DATA.totals.scissor} / 臂车 ${DATA.totals.boom}，核对无误后请发布`;
+    $('parseStatus').textContent = msg;
+    $('parseStatus').className = 'step-status ok';
+    $('tableSub').textContent = `共 ${DATA.salespeople.length} 位业务员 · 此为发布后访问者所见数据`;
+  } catch (e) {
+    DATA = null;
+    $('parseStatus').textContent = '❌ ' + (e.message || '解析失败');
+    $('parseStatus').className = 'step-status err';
+  } finally {
+    $('loading').style.display = 'none';
+    updatePublishBtn();
+  }
+}
+
+/* ---------------- 发布 ---------------- */
+function updatePublishBtn() {
+  $('publishBtn').disabled = !(DATA && ghUser);
+  $('publishBtn').title = !DATA ? '请先上传并成功解析 Excel'
+    : (!ghUser ? '请先设置并验证 GitHub Token' : '将当前预览数据发布到公网页面');
+}
+
+function b64Unicode(str) {
+  return btoa(Array.from(new TextEncoder().encode(str), (b) => String.fromCharCode(b)).join(''));
+}
+
+async function githubApi(path, options = {}) {
+  const resp = await fetch('https://api.github.com' + path, {
+    ...options,
+    headers: {
+      Authorization: 'Bearer ' + getToken(),
+      Accept: 'application/vnd.github+json',
+      'X-GitHub-Api-Version': '2022-11-28',
+      ...(options.headers || {}),
+    },
+  });
+  const text = await resp.text();
+  let body = null;
+  try { body = text ? JSON.parse(text) : null; } catch (e) { body = text; }
+  if (!resp.ok) {
+    const msg = (body && body.message) ? body.message : ('HTTP ' + resp.status);
+    throw new Error(msg + (body && body.errors ? ' ' + JSON.stringify(body.errors) : ''));
+  }
+  return body;
+}
+
+$('publishBtn').addEventListener('click', async () => {
+  if (!DATA || !ghUser) return;
+  if (!confirm('确认将当前预览数据发布到公网？\n发布后约 1 分钟，所有访问者打开网页将看到这份数据。')) return;
+
+  const updatedAt = new Date().toISOString();
+  const wrapper = {
+    published: true,
+    updatedAt,
+    fileName: DATA.fileName,
+    rentedOnly: DATA.rentedOnly,
+    payload: DATA,
+  };
+  const content = b64Unicode(JSON.stringify(wrapper));
+
+  $('publishBtn').disabled = true;
+  $('publishStatus').textContent = '⏳ 正在提交到 GitHub…';
+  $('publishStatus').className = 'step-status';
+  try {
+    // 获取现有文件 sha（更新必需；首次发布不存在则无 sha）
+    let sha = null;
+    try {
+      const existing = await githubApi(`/repos/${OWNER}/${REPO}/contents/${DATA_PATH}?ref=${BRANCH}`);
+      sha = existing.sha;
+    } catch (e) {
+      if (!/Not Found/i.test(e.message)) throw e;
+    }
+
+    await githubApi(`/repos/${OWNER}/${REPO}/contents/${DATA_PATH}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        message: `发布在租数据 ${DATA.fileName} @ ${updatedAt.replace('T', ' ').slice(0, 16)}`,
+        content,
+        sha,
+        branch: BRANCH,
+      }),
+    });
+    $('publishStatus').innerHTML =
+      `☁️ 已提交，等待 GitHub Pages 构建生效（通常 30~90 秒）…`;
+    $('publishStatus').className = 'step-status ok';
+    await waitLive(updatedAt);
+  } catch (e) {
+    $('publishStatus').textContent = '❌ 发布失败：' + e.message;
+    $('publishStatus').className = 'step-status err';
+    updatePublishBtn();
+  }
+});
+
+async function waitLive(updatedAt) {
+  const deadline = Date.now() + 3 * 60 * 1000;
+  while (Date.now() < deadline) {
+    await new Promise((r) => setTimeout(r, 8000));
+    try {
+      const resp = await fetch(`./data/result.json?t=${Date.now()}`, { cache: 'no-store' });
+      if (resp.ok) {
+        const live = await resp.json();
+        if (live && live.updatedAt === updatedAt) {
+          $('publishStatus').innerHTML =
+            `🎉 已生效！访问者现在看到的就是这份数据。` +
+            ` <a href="./index.html" target="_blank">打开访问者页面 →</a>`;
+          $('publishStatus').className = 'step-status ok';
+          updatePublishBtn();
+          return;
+        }
+      }
+    } catch (e) { /* 轮询中网络抖动忽略 */ }
+    $('publishStatus').textContent = '☁️ 已提交，等待 Pages 生效中…（可稍候手动刷新访问页确认）';
+  }
+  $('publishStatus').innerHTML =
+    `☁️ 已提交。Pages 构建可能稍慢，请 1~2 分钟后打开` +
+    ` <a href="./index.html" target="_blank">访问者页面</a> 确认。`;
+  $('publishStatus').className = 'step-status warn';
+  updatePublishBtn();
+}
+
+/* ---------------- 初始化 ---------------- */
+refreshTokenStatus();

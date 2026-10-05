@@ -1,1 +1,73 @@
-Lyog6K6/6Zeu6ICF6aG15YWl5Y+j77ya5Y+q6K+75ouJ5Y+W566h55CG5ZGY5bey5Y+R5biD55qE5pWw5o2u77yIZGF0YS9yZXN1bHQuanNvbu+8ie+8jOaXoOS7u+S9leS4iuS8oOiDveWKmyAqLwpjb25zdCAkID0gKGlkKSA9PiBkb2N1bWVudC5nZXRFbGVtZW50QnlJZChpZCk7Cgpjb25zdCB2aWV3ID0gbmV3IERhdGFWaWV3KHsKICB0Ym9keTogJCgnc2FsZXNUYm9keScpLAogIHN1bVNjaXNzb3I6ICQoJ3N1bVNjaXNzb3InKSwKICBzdW1Cb29tOiAkKCdzdW1Cb29tJyksCiAgc3VtbWFyeVJvdzogJCgnc3VtbWFyeVJvdycpLAogIHNlbGVjdDogJCgnc2FsZXNTZWxlY3QnKSwKICBzdWI6ICQoJ3RhYmxlU3ViJyksCiAgbWFwOiAkKCdtYXBDaGFydCcpLAogIG1hcFRpdGxlOiAkKCdtYXBUaXRsZScpLAogIHVua25vd25DYXJkOiAkKCd1bmtub3duQ2FyZCcpLAogIHVua25vd25UZXh0OiAkKCd1bmtub3duVGV4dCcpLAogIHVua25vd25TYW1wbGVzOiAkKCd1bmtub3duU2FtcGxlcycpLAp9KTsKCndpbmRvdy5hZGRFdmVudExpc3RlbmVyKCdyZXNpemUnLCAoKSA9PiB2aWV3LnJlc2l6ZSgpKTsKCmZ1bmN0aW9uIGZtdFRpbWUoaXNvKSB7CiAgdHJ5IHsKICAgIGNvbnN0IGQgPSBuZXcgRGF0ZShpc28pOwogICAgY29uc3QgcCA9IChuKSA9PiBTdHJpbmcobikucGFkU3RhcnQoMiwgJzAnKTsKICAgIHJldHVybiBgJHtkLmdldEZ1bGxZZWFyKCl9LSR7cChkLmdldE1vbnRoKCkgKyAxKX0tJHtwKGQuZ2V0RGF0ZSgpKX0gJHtwKGQuZ2V0SG91cnMoKSl9OiR7cChkLmdldE1pbnV0ZXMoKSl9YDsKICB9IGNhdGNoIChlKSB7IHJldHVybiBpc28gfHwgJyc7IH0KfQoKZnVuY3Rpb24gc2hvd0VtcHR5KG1lc3NhZ2UpIHsKICAkKCdzYWxlc1Rib2R5JykuaW5uZXJIVE1MID0gYDx0ciBjbGFzcz0iZW1wdHktcm93Ij48dGQgY29sc3Bhbj0iMyI+JHttZXNzYWdlfTwvdGQ+PC90cj5gOwogICQoJ3N1bW1hcnlSb3cnKS5zdHlsZS5kaXNwbGF5ID0gJ25vbmUnOwogICQoJ3NhbGVzU2VsZWN0JykuZGlzYWJsZWQgPSB0cnVlOwogICQoJ3BsYWNlaG9sZGVyVGV4dCcpLnRleHRDb250ZW50ID0gbWVzc2FnZTsKICAkKCdtYXBQbGFjZWhvbGRlcicpLnN0eWxlLmRpc3BsYXkgPSAnJzsKICAkKCd1bmtub3duQ2FyZCcpLnN0eWxlLmRpc3BsYXkgPSAnbm9uZSc7CiAgJCgncHVibGlzaEluZm8nKS50ZXh0Q29udGVudCA9ICcnOwp9Cgphc3luYyBmdW5jdGlvbiBsb2FkUHVibGlzaGVkKCkgewogICQoJ2ZpbGVJbmZvJykudGV4dENvbnRlbnQgPSAn5q2j5Zyo5Yqg6L295pWw5o2u4oCmJzsKICB0cnkgewogICAgY29uc3QgcmVzcCA9IGF3YWl0IGZldGNoKCcuL2RhdGEvcmVzdWx0Lmpzb24/dD0nICsgRGF0ZS5ub3coKSwgeyBjYWNoZTogJ25vLXN0b3JlJyB9KTsKICAgIGlmICghcmVzcC5vaykgdGhyb3cgbmV3IEVycm9yKCdIVFRQICcgKyByZXNwLnN0YXR1cyk7CiAgICBjb25zdCBqc29uID0gYXdhaXQgcmVzcC5qc29uKCk7CgogICAgaWYgKCFqc29uIHx8ICFqc29uLnB1Ymxpc2hlZCB8fCAhanNvbi5wYXlsb2FkKSB7CiAgICAgIHNob3dFbXB0eSgn5pWw5o2u5bCa5pyq5Y+R5biD77yM6K+3562J5b6F566h55CG5ZGY5LiK5Lyg5pyA5paw5Zyo56ef5oOF5Ya1IEV4Y2VsJyk7CiAgICAgICQoJ2ZpbGVJbmZvJykudGV4dENvbnRlbnQgPSAn5pqC5peg5bey5Y+R5biD5pWw5o2uJzsKICAgICAgcmV0dXJuOwogICAgfQoKICAgIGNvbnN0IGQgPSBqc29uLnBheWxvYWQ7CiAgICBhd2FpdCB2aWV3LmxvYWRHZW8oKTsKICAgIHZpZXcuc2V0RGF0YShkKTsKICAgICQoJ21hcFBsYWNlaG9sZGVyJykuc3R5bGUuZGlzcGxheSA9ICdub25lJzsKCiAgICBsZXQgbXNnID0gYPCfk4ogJHtqc29uLmZpbGVOYW1lIHx8ICflt7Llj5HluIPmlbDmja4nfSDCtyDlhbEgJHtkLnRvdGFsUm93c30g6KGM77yM6K6h5YWlICR7ZC5jb3VudGVkUm93c30g5Y+wYDsKICAgIGlmIChkLmZpbHRlcmVkT3V0ID4gMCkgbXNnICs9IGDvvIjlt7LmjpLpmaTpnZ7lnKjnp58gJHtkLmZpbHRlcmVkT3V0fSDlj7DvvIlgOwogICAgJCgnZmlsZUluZm8nKS50ZXh0Q29udGVudCA9IG1zZzsKICAgICQoJ3RhYmxlU3ViJykudGV4dENvbnRlbnQgPSBg5YWxICR7ZC5zYWxlc3Blb3BsZS5sZW5ndGh9IOS9jeS4muWKoeWRmCDCtyDngrnlh7vooYzlj6/nrZvpgInlnLDlm75gOwogICAgJCgncHVibGlzaEluZm8nKS50ZXh0Q29udGVudCA9IGDmlbDmja7mm7TmlrDkuo4gJHtmbXRUaW1lKGpzb24udXBkYXRlZEF0KX3vvIjliarliIDovaYgJHtkLnRvdGFscy5zY2lzc29yfSDlj7AgLyDoh4LovaYgJHtkLnRvdGFscy5ib29tfSDlj7DvvIlgOwogIH0gY2F0Y2ggKGUpIHsKICAgIGlmIChTdHJpbmcoZS5tZXNzYWdlKS5pbmNsdWRlcygnNDA0JykpIHsKICAgICAgc2hvd0VtcHR5KCfmlbDmja7lsJrmnKrlj5HluIPvvIzor7fnrYnlvoXnrqHnkIblkZjkuIrkvKDmnIDmlrDlnKjnp5/mg4XlhrUgRXhjZWwnKTsKICAgICAgJCgnZmlsZUluZm8nKS50ZXh0Q29udGVudCA9ICfmmoLml6Dlt7Llj5HluIPmlbDmja4nOwogICAgfSBlbHNlIHsKICAgICAgc2hvd0VtcHR5KCfmlbDmja7liqDovb3lpLHotKXvvIzor7fngrnlh7vigJzliLfmlrDmlbDmja7igJ3ph43or5UnKTsKICAgICAgJCgnZmlsZUluZm8nKS50ZXh0Q29udGVudCA9ICfliqDovb3lpLHotKXvvJonICsgZS5tZXNzYWdlOwogICAgfQogIH0KfQoKJCgncmVmcmVzaEJ0bicpLmFkZEV2ZW50TGlzdGVuZXIoJ2NsaWNrJywgbG9hZFB1Ymxpc2hlZCk7CmxvYWRQdWJsaXNoZWQoKTsK
+/* 访问者页入口：只读拉取管理员已发布的数据（data/result.json），无任何上传能力 */
+const $ = (id) => document.getElementById(id);
+
+const view = new DataView({
+  tbody: $('salesTbody'),
+  sumScissor: $('sumScissor'),
+  sumBoom: $('sumBoom'),
+  summaryRow: $('summaryRow'),
+  select: $('salesSelect'),
+  sub: $('tableSub'),
+  map: $('mapChart'),
+  mapTitle: $('mapTitle'),
+  unknownCard: $('unknownCard'),
+  unknownText: $('unknownText'),
+  unknownSamples: $('unknownSamples'),
+});
+
+window.addEventListener('resize', () => view.resize());
+
+function fmtTime(iso) {
+  try {
+    const d = new Date(iso);
+    const p = (n) => String(n).padStart(2, '0');
+    return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}`;
+  } catch (e) { return iso || ''; }
+}
+
+function showEmpty(message) {
+  $('salesTbody').innerHTML = `<tr class="empty-row"><td colspan="3">${message}</td></tr>`;
+  $('summaryRow').style.display = 'none';
+  $('salesSelect').disabled = true;
+  $('placeholderText').textContent = message;
+  $('mapPlaceholder').style.display = '';
+  $('unknownCard').style.display = 'none';
+  $('publishInfo').textContent = '';
+}
+
+async function loadPublished() {
+  $('fileInfo').textContent = '正在加载数据…';
+  try {
+    const resp = await fetch('./data/result.json?t=' + Date.now(), { cache: 'no-store' });
+    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+    const json = await resp.json();
+
+    if (!json || !json.published || !json.payload) {
+      showEmpty('数据尚未发布，请等待管理员上传最新在租情况 Excel');
+      $('fileInfo').textContent = '暂无已发布数据';
+      return;
+    }
+
+    const d = json.payload;
+    await view.loadGeo();
+    view.setData(d);
+    $('mapPlaceholder').style.display = 'none';
+
+    let msg = `📊 ${json.fileName || '已发布数据'} · 共 ${d.totalRows} 行，计入 ${d.countedRows} 台`;
+    if (d.filteredOut > 0) msg += `（已排除非在租 ${d.filteredOut} 台）`;
+    $('fileInfo').textContent = msg;
+    $('tableSub').textContent = `共 ${d.salespeople.length} 位业务员 · 点击行可筛选地图`;
+    $('publishInfo').textContent = `数据更新于 ${fmtTime(json.updatedAt)}（剪刀车 ${d.totals.scissor} 台 / 臂车 ${d.totals.boom} 台）`;
+  } catch (e) {
+    if (String(e.message).includes('404')) {
+      showEmpty('数据尚未发布，请等待管理员上传最新在租情况 Excel');
+      $('fileInfo').textContent = '暂无已发布数据';
+    } else {
+      showEmpty('数据加载失败，请点击“刷新数据”重试');
+      $('fileInfo').textContent = '加载失败：' + e.message;
+    }
+  }
+}
+
+$('refreshBtn').addEventListener('click', loadPublished);
+loadPublished();

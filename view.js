@@ -1,1 +1,205 @@
-LyogPT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09CiAqIERhdGFWaWV3IOKAlOKAlCDmlbDmja7muLLmn5PlsYLvvIjorr/pl67ogIXpobUgLyDnrqHnkIblkZjpobXlhbHnlKjvvIkKICog6LSf6LSj77ya5Lia5Yqh5ZGY6KGo5qC844CB5rGH5oC76KGM44CB5Lia5Yqh5ZGY5LiL5ouJ44CB5rmW5YyX5Zyw5Zu+44CB5pyq6K+G5Yir5o+Q56S6CiAqIOaVsOaNruadpea6kOeUseWQhOmhtemdouiHquihjOWGs+Wumu+8iOiuv+mXruiAheaLieWPlue6v+S4iiBKU09O77yM566h55CG5ZGY5pys5Zyw6Kej5p6Q77yJCiAqID09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PT09PSAqLwoKd2luZG93LlVOS05PV05fUkVHSU9OID0gd2luZG93LlVOS05PV05fUkVHSU9OIHx8ICfmnKror4bliKvljLrln58nOwoKY2xhc3MgRGF0YVZpZXcgewogIGNvbnN0cnVjdG9yKGVscykgewogICAgdGhpcy5lbCA9IGVsczsgLy8ge3Rib2R5LCBzdW1TY2lzc29yLCBzdW1Cb29tLCBzdW1tYXJ5Um93LCBzZWxlY3QsIHN1YiwgbWFwLCBtYXBUaXRsZSwgdW5rbm93bkNhcmQsIHVua25vd25UZXh0LCB1bmtub3duU2FtcGxlc30KICAgIHRoaXMuZGF0YSA9IG51bGw7CiAgICB0aGlzLmN1cnJlbnRTYWxlcyA9ICdfX0FMTF9fJzsKICAgIHRoaXMuY2hhcnQgPSBudWxsOwogICAgdGhpcy5nZW8gPSBudWxsOwogICAgdGhpcy5vblNhbGVzQ2hhbmdlID0gbnVsbDsKCiAgICBpZiAodGhpcy5lbC5zZWxlY3QpIHsKICAgICAgdGhpcy5lbC5zZWxlY3QuYWRkRXZlbnRMaXN0ZW5lcignY2hhbmdlJywgKCkgPT4gewogICAgICAgIHRoaXMuc2V0U2FsZXModGhpcy5lbC5zZWxlY3QudmFsdWUpOwogICAgICB9KTsKICAgIH0KICB9CgogIGFzeW5jIGxvYWRHZW8oKSB7CiAgICBpZiAodGhpcy5nZW8pIHJldHVybiB0aGlzLmdlbzsKICAgIGNvbnN0IHJlc3AgPSBhd2FpdCBmZXRjaCgnLi9odWJlaS5qc29uJyk7CiAgICB0aGlzLmdlbyA9IGF3YWl0IHJlc3AuanNvbigpOwogICAgcmV0dXJuIHRoaXMuZ2VvOwogIH0KCiAgc2V0RGF0YShkYXRhKSB7CiAgICB0aGlzLmRhdGEgPSBkYXRhOwogICAgdGhpcy5jdXJyZW50U2FsZXMgPSAnX19BTExfXyc7CiAgICBpZiAodGhpcy5lbC5zZWxlY3QpIHRoaXMuZWwuc2VsZWN0LnZhbHVlID0gJ19fQUxMX18nOwogICAgdGhpcy5yZW5kZXJBbGwoKTsKICB9CgogIHNldFNhbGVzKG5hbWUpIHsKICAgIHRoaXMuY3VycmVudFNhbGVzID0gbmFtZTsKICAgIGlmICh0aGlzLmVsLnNlbGVjdCkgdGhpcy5lbC5zZWxlY3QudmFsdWUgPSBuYW1lOwogICAgdGhpcy5yZW5kZXJUYWJsZSgpOwogICAgdGhpcy5yZW5kZXJVbmtub3duKCk7CiAgICB0aGlzLnJlbmRlck1hcCgpOwogICAgaWYgKHRoaXMub25TYWxlc0NoYW5nZSkgdGhpcy5vblNhbGVzQ2hhbmdlKG5hbWUpOwogIH0KCiAgcmVuZGVyQWxsKCkgewogICAgdGhpcy5yZW5kZXJTZWxlY3QoKTsKICAgIHRoaXMucmVuZGVyVGFibGUoKTsKICAgIHRoaXMucmVuZGVyVW5rbm93bigpOwogICAgdGhpcy5yZW5kZXJNYXAoKTsKICB9CgogIHJlbmRlclNlbGVjdCgpIHsKICAgIGlmICghdGhpcy5lbC5zZWxlY3QpIHJldHVybjsKICAgIGNvbnN0IHNlbCA9IHRoaXMuZWwuc2VsZWN0OwogICAgc2VsLmlubmVySFRNTCA9ICc8b3B0aW9uIHZhbHVlPSJfX0FMTF9fIj7lhajpg6jmlbDmja7vvIjmsYfmgLvvvIk8L29wdGlvbj4nOwogICAgdGhpcy5kYXRhLnNhbGVzcGVvcGxlLmZvckVhY2goKHMpID0+IHsKICAgICAgY29uc3Qgb3B0ID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudCgnb3B0aW9uJyk7CiAgICAgIG9wdC52YWx1ZSA9IHMubmFtZTsKICAgICAgb3B0LnRleHRDb250ZW50ID0gYCR7cy5uYW1lfe+8iOWJqiR7cy5zY2lzc29yfSAvIOiHgiR7cy5ib29tfe+8iWA7CiAgICAgIHNlbC5hcHBlbmRDaGlsZChvcHQpOwogICAgfSk7CiAgICBzZWwudmFsdWUgPSB0aGlzLmN1cnJlbnRTYWxlczsKICAgIHNlbC5kaXNhYmxlZCA9IGZhbHNlOwogIH0KCiAgcmVuZGVyVGFibGUoKSB7CiAgICBjb25zdCB0Ym9keSA9IHRoaXMuZWwudGJvZHk7CiAgICB0Ym9keS5pbm5lckhUTUwgPSAnJzsKICAgIHRoaXMuZGF0YS5zYWxlc3Blb3BsZS5mb3JFYWNoKChzKSA9PiB7CiAgICAgIGNvbnN0IHRyID0gZG9jdW1lbnQuY3JlYXRlRWxlbWVudCgndHInKTsKICAgICAgaWYgKHMubmFtZSA9PT0gdGhpcy5jdXJyZW50U2FsZXMpIHRyLmNsYXNzTmFtZSA9ICdhY3RpdmUnOwogICAgICB0ci5pbm5lckhUTUwgPQogICAgICAgIGA8dGQgY2xhc3M9ImNvbC1uYW1lIj4ke2VzYyhzLm5hbWUpfTwvdGQ+YCArCiAgICAgICAgYDx0ZCBjbGFzcz0iY29sLW51bSI+JHtzLnNjaXNzb3J9PC90ZD5gICsKICAgICAgICBgPHRkIGNsYXNzPSJjb2wtbnVtIj4ke3MuYm9vbX08L3RkPmA7CiAgICAgIHRyLmFkZEV2ZW50TGlzdGVuZXIoJ2NsaWNrJywgKCkgPT4gdGhpcy5zZXRTYWxlcyhzLm5hbWUpKTsKICAgICAgdGJvZHkuYXBwZW5kQ2hpbGQodHIpOwogICAgfSk7CiAgICBpZiAodGhpcy5lbC5zdW1TY2lzc29yKSB0aGlzLmVsLnN1bVNjaXNzb3IudGV4dENvbnRlbnQgPSB0aGlzLmRhdGEudG90YWxzLnNjaXNzb3I7CiAgICBpZiAodGhpcy5lbC5zdW1Cb29tKSB0aGlzLmVsLnN1bUJvb20udGV4dENvbnRlbnQgPSB0aGlzLmRhdGEudG90YWxzLmJvb207CiAgICBpZiAodGhpcy5lbC5zdW1tYXJ5Um93KSB0aGlzLmVsLnN1bW1hcnlSb3cuc3R5bGUuZGlzcGxheSA9ICcnOwogIH0KCiAgZ2V0UmVnaW9uVmlldyhyZWdpb25OYW1lKSB7CiAgICBjb25zdCByID0gdGhpcy5kYXRhLnJlZ2lvbnMuZmluZCgoeCkgPT4geC5uYW1lID09PSByZWdpb25OYW1lKTsKICAgIGlmICghcikgcmV0dXJuIHsgc2Npc3NvcjogMCwgYm9vbTogMCwgdG90YWw6IDAgfTsKICAgIGlmICh0aGlzLmN1cnJlbnRTYWxlcyA9PT0gJ19fQUxMX18nKSB7CiAgICAgIHJldHVybiB7IHNjaXNzb3I6IHIuc2Npc3NvciwgYm9vbTogci5ib29tLCB0b3RhbDogci50b3RhbCB9OwogICAgfQogICAgY29uc3QgdiA9IHIuc2FsZXMuZmluZCgoeCkgPT4geC5uYW1lID09PSB0aGlzLmN1cnJlbnRTYWxlcyk7CiAgICByZXR1cm4gdiA/IHsgc2Npc3Nvcjogdi5zY2lzc29yLCBib29tOiB2LmJvb20sIHRvdGFsOiB2LnNjaXNzb3IgKyB2LmJvb20gfQogICAgICAgICAgICAgOiB7IHNjaXNzb3I6IDAsIGJvb206IDAsIHRvdGFsOiAwIH07CiAgfQoKICByZW5kZXJVbmtub3duKCkgewogICAgaWYgKCF0aGlzLmVsLnVua25vd25DYXJkKSByZXR1cm47CiAgICBjb25zdCB2ID0gdGhpcy5nZXRSZWdpb25WaWV3KFVOS05PV05fUkVHSU9OKTsKICAgIGlmICh2LnRvdGFsID4gMCkgewogICAgICB0aGlzLmVsLnVua25vd25DYXJkLnN0eWxlLmRpc3BsYXkgPSAnJzsKICAgICAgY29uc3Qgd2hvID0gdGhpcy5jdXJyZW50U2FsZXMgPT09ICdfX0FMTF9fJyA/ICflhajpg6gnIDogdGhpcy5jdXJyZW50U2FsZXM7CiAgICAgIHRoaXMuZWwudW5rbm93blRleHQudGV4dENvbnRlbnQgPQogICAgICAgIGAke3dob30g5pyJICR7di50b3RhbH0g5Y+w6K6+5aSH77yI5Ymq5YiA6L2mICR7di5zY2lzc29yfSDlj7DjgIHoh4LovaYgJHt2LmJvb219IOWPsO+8ieaXoOazleWumuS9jeWIsOa5luWMl+WMuuWfn++8jOacquaYvuekuuWcqOWcsOWbvuS4iuOAgmA7CiAgICAgIGlmICh0aGlzLmVsLnVua25vd25TYW1wbGVzKSB7CiAgICAgICAgaWYgKHRoaXMuY3VycmVudFNhbGVzID09PSAnX19BTExfXycgJiYgKHRoaXMuZGF0YS51bmtub3duU2FtcGxlcyB8fCBbXSkubGVuZ3RoKSB7CiAgICAgICAgICB0aGlzLmVsLnVua25vd25TYW1wbGVzLmlubmVySFRNTCA9CiAgICAgICAgICAgICflnLDlnYDmoLfkvovvvJonICsgdGhpcy5kYXRhLnVua25vd25TYW1wbGVzLm1hcChlc2MpLmpvaW4oJzxicj4nKTsKICAgICAgICB9IGVsc2UgewogICAgICAgICAgdGhpcy5lbC51bmtub3duU2FtcGxlcy5pbm5lckhUTUwgPSAnJzsKICAgICAgICB9CiAgICAgIH0KICAgIH0gZWxzZSB7CiAgICAgIHRoaXMuZWwudW5rbm93bkNhcmQuc3R5bGUuZGlzcGxheSA9ICdub25lJzsKICAgIH0KICB9CgogIGFzeW5jIHJlbmRlck1hcCgpIHsKICAgIGlmICghdGhpcy5kYXRhIHx8ICF0aGlzLmVsLm1hcCkgcmV0dXJuOwogICAgaWYgKCF0aGlzLmNoYXJ0KSB0aGlzLmNoYXJ0ID0gZWNoYXJ0cy5pbml0KHRoaXMuZWwubWFwKTsKICAgIGNvbnN0IGdlbyA9IGF3YWl0IHRoaXMubG9hZEdlbygpOwogICAgZWNoYXJ0cy5yZWdpc3Rlck1hcCgnaHViZWknLCBnZW8pOwoKICAgIGNvbnN0IG1hcERhdGEgPSB0aGlzLmRhdGEucmVnaW9ucwogICAgICAuZmlsdGVyKChyKSA9PiByLm5hbWUgIT09IFVOS05PV05fUkVHSU9OKQogICAgICAubWFwKChyKSA9PiB7CiAgICAgICAgY29uc3QgdiA9IHRoaXMuZ2V0UmVnaW9uVmlldyhyLm5hbWUpOwogICAgICAgIHJldHVybiB7IG5hbWU6IHIubmFtZSwgdmFsdWU6IHYudG90YWwsIHNjaXNzb3I6IHYuc2Npc3NvciwgYm9vbTogdi5ib29tIH07CiAgICAgIH0pOwogICAgY29uc3QgbWF4VmFsID0gTWF0aC5tYXgoMSwgLi4ubWFwRGF0YS5tYXAoKGQpID0+IGQudmFsdWUpKTsKCiAgICBpZiAodGhpcy5lbC5tYXBUaXRsZSkgewogICAgICB0aGlzLmVsLm1hcFRpdGxlLnRleHRDb250ZW50ID0gdGhpcy5jdXJyZW50U2FsZXMgPT09ICdfX0FMTF9fJwogICAgICAgID8gJ+a5luWMl+ecgeWcqOenn+iuvuWkh+WIhuW4g++8iOWFqOmDqOaVsOaNru+8iScKICAgICAgICA6IGAke3RoaXMuY3VycmVudFNhbGVzfSDnmoTlnKjnp5/orr7lpIfliIbluINgOwogICAgfQoKICAgIHRoaXMuY2hhcnQuc2V0T3B0aW9uKHsKICAgICAgdG9vbHRpcDogewogICAgICAgIHRyaWdnZXI6ICdpdGVtJywKICAgICAgICBiYWNrZ3JvdW5kQ29sb3I6ICdyZ2JhKDE1LCAzNSwgODAsIC45MiknLAogICAgICAgIGJvcmRlcldpZHRoOiAwLAogICAgICAgIHRleHRTdHlsZTogeyBjb2xvcjogJyNmZmYnLCBmb250U2l6ZTogMTMgfSwKICAgICAgICBmb3JtYXR0ZXI6IChwKSA9PiB7CiAgICAgICAgICBjb25zdCBkID0gcC5kYXRhIHx8IHt9OwogICAgICAgICAgY29uc3QgcyA9IGQuc2Npc3NvciB8fCAwLCBiID0gZC5ib29tIHx8IDAsIHQgPSBkLnZhbHVlIHx8IDA7CiAgICAgICAgICBpZiAodCA9PT0gMCkgcmV0dXJuIGA8Yj4ke3AubmFtZX08L2I+PGJyLz7mmoLml6DlnKjnp5/orr7lpIdgOwogICAgICAgICAgcmV0dXJuIGA8YiBzdHlsZT0iZm9udC1zaXplOjE0cHgiPiR7cC5uYW1lfTwvYj48YnIvPmAgKwogICAgICAgICAgICAgICAgIGDliarliIDovabvvJo8YiBzdHlsZT0iY29sb3I6IzdkZDNmYyI+JHtzfTwvYj4g5Y+wPGJyLz5gICsKICAgICAgICAgICAgICAgICBg6IeC44CA6L2m77yaPGIgc3R5bGU9ImNvbG9yOiNmZGJhNzQiPiR7Yn08L2I+IOWPsDxici8+YCArCiAgICAgICAgICAgICAgICAgYOWQiOOAgOiuoe+8mjxiPiR7dH08L2I+IOWPsGA7CiAgICAgICAgfSwKICAgICAgfSwKICAgICAgdmlzdWFsTWFwOiB7CiAgICAgICAgdHlwZTogJ2NvbnRpbnVvdXMnLCBtaW46IDAsIG1heDogbWF4VmFsLAogICAgICAgIGxlZnQ6IDE2LCBib3R0b206IDE4LCB0ZXh0OiBbJ+WkmicsICflsJEnXSwgY2FsY3VsYWJsZTogdHJ1ZSwKICAgICAgICBpblJhbmdlOiB7IGNvbG9yOiBbJyNlM2VkZmInLCAnIzdmYjBmNScsICcjMjU2M2ViJywgJyMxNzNiOGUnXSB9LAogICAgICAgIG91dE9mUmFuZ2U6IHsgY29sb3I6ICcjZjFmNWY5JyB9LAogICAgICAgIHRleHRTdHlsZTogeyBjb2xvcjogJyM0NzU1NjknLCBmb250U2l6ZTogMTIgfSwKICAgICAgfSwKICAgICAgc2VyaWVzOiBbewogICAgICAgIG5hbWU6ICflnKjnp5/orr7lpIcnLCB0eXBlOiAnbWFwJywgbWFwOiAnaHViZWknLAogICAgICAgIHJvYW06IHRydWUsIHpvb206IDEuMDUsCiAgICAgICAgbGF5b3V0Q2VudGVyOiBbJzUwJScsICc1MiUnXSwgbGF5b3V0U2l6ZTogJzk2JScsIHNlbGVjdGVkTW9kZTogZmFsc2UsCiAgICAgICAgbGFiZWw6IHsKICAgICAgICAgIHNob3c6IHRydWUsCiAgICAgICAgICBmb3JtYXR0ZXI6IChwKSA9PiB7CiAgICAgICAgICAgIGNvbnN0IGQgPSBwLmRhdGEgfHwge307CiAgICAgICAgICAgIGlmICgoZC52YWx1ZSB8fCAwKSA+IDApIHsKICAgICAgICAgICAgICByZXR1cm4gYHtufCR7cC5uYW1lfX1cbntjfOWJqiR7ZC5zY2lzc29yIHx8IDB9fSB7Ynzoh4Ike2QuYm9vbSB8fCAwfX1gOwogICAgICAgICAgICB9CiAgICAgICAgICAgIHJldHVybiBge258JHtwLm5hbWV9fWA7CiAgICAgICAgICB9LAogICAgICAgICAgcmljaDogewogICAgICAgICAgICBuOiB7IGNvbG9yOiAnIzMzNDE1NScsIGZvbnRTaXplOiAxMSwgZm9udFdlaWdodDogNjAwLCBsaW5lSGVpZ2h0OiAxNSB9LAogICAgICAgICAgICBjOiB7IGNvbG9yOiAnIzFkNGVkOCcsIGZvbnRTaXplOiAxMCwgbGluZUhlaWdodDogMTQgfSwKICAgICAgICAgICAgYjogeyBjb2xvcjogJyNjMjQxMGMnLCBmb250U2l6ZTogMTAsIGxpbmVIZWlnaHQ6IDE0IH0sCiAgICAgICAgICB9LAogICAgICAgIH0sCiAgICAgICAgZW1waGFzaXM6IHsKICAgICAgICAgIGxhYmVsOiB7CiAgICAgICAgICAgIHNob3c6IHRydWUsCiAgICAgICAgICAgIHJpY2g6IHsKICAgICAgICAgICAgICBuOiB7IGNvbG9yOiAnI2ZmZicsIGZvbnRTaXplOiAxMywgZm9udFdlaWdodDogNzAwLCBsaW5lSGVpZ2h0OiAxOCB9LAogICAgICAgICAgICAgIGM6IHsgY29sb3I6ICcjYmZkYmZlJywgZm9udFNpemU6IDEyLCBsaW5lSGVpZ2h0OiAxNiB9LAogICAgICAgICAgICAgIGI6IHsgY29sb3I6ICcjZmVkN2FhJywgZm9udFNpemU6IDEyLCBsaW5lSGVpZ2h0OiAxNiB9LAogICAgICAgICAgICB9LAogICAgICAgICAgfSwKICAgICAgICAgIGl0ZW1TdHlsZTogeyBhcmVhQ29sb3I6ICcjZjU5ZTBiJywgc2hhZG93Qmx1cjogMTQsIHNoYWRvd0NvbG9yOiAncmdiYSgwLDAsMCwuMyknIH0sCiAgICAgICAgfSwKICAgICAgICBpdGVtU3R5bGU6IHsgYm9yZGVyQ29sb3I6ICcjZmZmZmZmJywgYm9yZGVyV2lkdGg6IDEsIGFyZWFDb2xvcjogJyNmMWY1ZjknIH0sCiAgICAgICAgZGF0YTogbWFwRGF0YSwKICAgICAgfV0sCiAgICB9LCB0cnVlKTsKICB9CgogIHJlc2l6ZSgpIHsgaWYgKHRoaXMuY2hhcnQpIHRoaXMuY2hhcnQucmVzaXplKCk7IH0KfQoKZnVuY3Rpb24gZXNjKHN0cikgewogIHJldHVybiBTdHJpbmcoc3RyKS5yZXBsYWNlKC9bJjw+IiddL2csIChjKSA9PiAoCiAgICB7ICcmJzogJyZhbXA7JywgJzwnOiAnJmx0OycsICc+JzogJyZndDsnLCAnIic6ICcmcXVvdDsnLCAiJyI6ICcmIzM5OycgfVtjXQogICkpOwp9Cg==
+/* ============================================================
+ * DataView —— 数据渲染层（访问者页 / 管理员页共用）
+ * 负责：业务员表格、汇总行、业务员下拉、湖北地图、未识别提示
+ * 数据来源由各页面自行决定（访问者拉取线上 JSON，管理员本地解析）
+ * ============================================================ */
+
+window.UNKNOWN_REGION = window.UNKNOWN_REGION || '未识别区域';
+
+class DataView {
+  constructor(els) {
+    this.el = els; // {tbody, sumScissor, sumBoom, summaryRow, select, sub, map, mapTitle, unknownCard, unknownText, unknownSamples}
+    this.data = null;
+    this.currentSales = '__ALL__';
+    this.chart = null;
+    this.geo = null;
+    this.onSalesChange = null;
+
+    if (this.el.select) {
+      this.el.select.addEventListener('change', () => {
+        this.setSales(this.el.select.value);
+      });
+    }
+  }
+
+  async loadGeo() {
+    if (this.geo) return this.geo;
+    const resp = await fetch('./hubei.json');
+    this.geo = await resp.json();
+    return this.geo;
+  }
+
+  setData(data) {
+    this.data = data;
+    this.currentSales = '__ALL__';
+    if (this.el.select) this.el.select.value = '__ALL__';
+    this.renderAll();
+  }
+
+  setSales(name) {
+    this.currentSales = name;
+    if (this.el.select) this.el.select.value = name;
+    this.renderTable();
+    this.renderUnknown();
+    this.renderMap();
+    if (this.onSalesChange) this.onSalesChange(name);
+  }
+
+  renderAll() {
+    this.renderSelect();
+    this.renderTable();
+    this.renderUnknown();
+    this.renderMap();
+  }
+
+  renderSelect() {
+    if (!this.el.select) return;
+    const sel = this.el.select;
+    sel.innerHTML = '<option value="__ALL__">全部数据（汇总）</option>';
+    this.data.salespeople.forEach((s) => {
+      const opt = document.createElement('option');
+      opt.value = s.name;
+      opt.textContent = `${s.name}（剪${s.scissor} / 臂${s.boom}）`;
+      sel.appendChild(opt);
+    });
+    sel.value = this.currentSales;
+    sel.disabled = false;
+  }
+
+  renderTable() {
+    const tbody = this.el.tbody;
+    tbody.innerHTML = '';
+    this.data.salespeople.forEach((s) => {
+      const tr = document.createElement('tr');
+      if (s.name === this.currentSales) tr.className = 'active';
+      tr.innerHTML =
+        `<td class="col-name">${esc(s.name)}</td>` +
+        `<td class="col-num">${s.scissor}</td>` +
+        `<td class="col-num">${s.boom}</td>`;
+      tr.addEventListener('click', () => this.setSales(s.name));
+      tbody.appendChild(tr);
+    });
+    if (this.el.sumScissor) this.el.sumScissor.textContent = this.data.totals.scissor;
+    if (this.el.sumBoom) this.el.sumBoom.textContent = this.data.totals.boom;
+    if (this.el.summaryRow) this.el.summaryRow.style.display = '';
+  }
+
+  getRegionView(regionName) {
+    const r = this.data.regions.find((x) => x.name === regionName);
+    if (!r) return { scissor: 0, boom: 0, total: 0 };
+    if (this.currentSales === '__ALL__') {
+      return { scissor: r.scissor, boom: r.boom, total: r.total };
+    }
+    const v = r.sales.find((x) => x.name === this.currentSales);
+    return v ? { scissor: v.scissor, boom: v.boom, total: v.scissor + v.boom }
+             : { scissor: 0, boom: 0, total: 0 };
+  }
+
+  renderUnknown() {
+    if (!this.el.unknownCard) return;
+    const v = this.getRegionView(UNKNOWN_REGION);
+    if (v.total > 0) {
+      this.el.unknownCard.style.display = '';
+      const who = this.currentSales === '__ALL__' ? '全部' : this.currentSales;
+      this.el.unknownText.textContent =
+        `${who} 有 ${v.total} 台设备（剪刀车 ${v.scissor} 台、臂车 ${v.boom} 台）无法定位到湖北区域，未显示在地图上。`;
+      if (this.el.unknownSamples) {
+        if (this.currentSales === '__ALL__' && (this.data.unknownSamples || []).length) {
+          this.el.unknownSamples.innerHTML =
+            '地址样例：' + this.data.unknownSamples.map(esc).join('<br>');
+        } else {
+          this.el.unknownSamples.innerHTML = '';
+        }
+      }
+    } else {
+      this.el.unknownCard.style.display = 'none';
+    }
+  }
+
+  async renderMap() {
+    if (!this.data || !this.el.map) return;
+    if (!this.chart) this.chart = echarts.init(this.el.map);
+    const geo = await this.loadGeo();
+    echarts.registerMap('hubei', geo);
+
+    const mapData = this.data.regions
+      .filter((r) => r.name !== UNKNOWN_REGION)
+      .map((r) => {
+        const v = this.getRegionView(r.name);
+        return { name: r.name, value: v.total, scissor: v.scissor, boom: v.boom };
+      });
+    const maxVal = Math.max(1, ...mapData.map((d) => d.value));
+
+    if (this.el.mapTitle) {
+      this.el.mapTitle.textContent = this.currentSales === '__ALL__'
+        ? '湖北省在租设备分布（全部数据）'
+        : `${this.currentSales} 的在租设备分布`;
+    }
+
+    this.chart.setOption({
+      tooltip: {
+        trigger: 'item',
+        backgroundColor: 'rgba(15, 35, 80, .92)',
+        borderWidth: 0,
+        textStyle: { color: '#fff', fontSize: 13 },
+        formatter: (p) => {
+          const d = p.data || {};
+          const s = d.scissor || 0, b = d.boom || 0, t = d.value || 0;
+          if (t === 0) return `<b>${p.name}</b><br/>暂无在租设备`;
+          return `<b style="font-size:14px">${p.name}</b><br/>` +
+                 `剪刀车：<b style="color:#7dd3fc">${s}</b> 台<br/>` +
+                 `臂　车：<b style="color:#fdba74">${b}</b> 台<br/>` +
+                 `合　计：<b>${t}</b> 台`;
+        },
+      },
+      visualMap: {
+        type: 'continuous', min: 0, max: maxVal,
+        left: 16, bottom: 18, text: ['多', '少'], calculable: true,
+        inRange: { color: ['#e3edfb', '#7fb0f5', '#2563eb', '#173b8e'] },
+        outOfRange: { color: '#f1f5f9' },
+        textStyle: { color: '#475569', fontSize: 12 },
+      },
+      series: [{
+        name: '在租设备', type: 'map', map: 'hubei',
+        roam: true, zoom: 1.05,
+        layoutCenter: ['50%', '52%'], layoutSize: '96%', selectedMode: false,
+        label: {
+          show: true,
+          formatter: (p) => {
+            const d = p.data || {};
+            if ((d.value || 0) > 0) {
+              return `{n|${p.name}}\n{c|剪${d.scissor || 0}} {b|臂${d.boom || 0}}`;
+            }
+            return `{n|${p.name}}`;
+          },
+          rich: {
+            n: { color: '#334155', fontSize: 11, fontWeight: 600, lineHeight: 15 },
+            c: { color: '#1d4ed8', fontSize: 10, lineHeight: 14 },
+            b: { color: '#c2410c', fontSize: 10, lineHeight: 14 },
+          },
+        },
+        emphasis: {
+          label: {
+            show: true,
+            rich: {
+              n: { color: '#fff', fontSize: 13, fontWeight: 700, lineHeight: 18 },
+              c: { color: '#bfdbfe', fontSize: 12, lineHeight: 16 },
+              b: { color: '#fed7aa', fontSize: 12, lineHeight: 16 },
+            },
+          },
+          itemStyle: { areaColor: '#f59e0b', shadowBlur: 14, shadowColor: 'rgba(0,0,0,.3)' },
+        },
+        itemStyle: { borderColor: '#ffffff', borderWidth: 1, areaColor: '#f1f5f9' },
+        data: mapData,
+      }],
+    }, true);
+  }
+
+  resize() { if (this.chart) this.chart.resize(); }
+}
+
+function esc(str) {
+  return String(str).replace(/[&<>"']/g, (c) => (
+    { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
+  ));
+}
