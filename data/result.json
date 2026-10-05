@@ -1,6 +1,275 @@
 {
-  "published": false,
-  "updatedAt": null,
-  "fileName": null,
-  "note": "占位文件：管理员尚未发布数据。访问者页会显示“数据尚未发布”。"
+  "published": true,
+  "updatedAt": "2026-10-05T10:50:02.157Z",
+  "fileName": "file_设备档案-2026-10-05-18-14-07_1791195249278.xlsx",
+  "rentedOnly": true,
+  "payload": {
+    "fileName": "file_设备档案-2026-10-05-18-14-07_1791195249278.xlsx",
+    "totalRows": 158,
+    "countedRows": 9,
+    "filteredOut": 149,
+    "rentedOnly": true,
+    "hasRentInfo": true,
+    "columns": {
+      "series": "系列",
+      "addr": "设备最新定位地址",
+      "sales": "业务经理"
+    },
+    "salespeople": [
+      {
+        "name": "未填写业务员",
+        "scissor": 7,
+        "boom": 2,
+        "total": 9
+      }
+    ],
+    "regions": [
+      {
+        "name": "黄石市",
+        "scissor": 1,
+        "boom": 0,
+        "total": 1,
+        "sales": [
+          {
+            "name": "未填写业务员",
+            "scissor": 1,
+            "boom": 0
+          }
+        ]
+      },
+      {
+        "name": "十堰市",
+        "scissor": 0,
+        "boom": 0,
+        "total": 0,
+        "sales": []
+      },
+      {
+        "name": "宜昌市",
+        "scissor": 0,
+        "boom": 0,
+        "total": 0,
+        "sales": []
+      },
+      {
+        "name": "襄阳市",
+        "scissor": 0,
+        "boom": 0,
+        "total": 0,
+        "sales": []
+      },
+      {
+        "name": "鄂州市",
+        "scissor": 0,
+        "boom": 1,
+        "total": 1,
+        "sales": [
+          {
+            "name": "未填写业务员",
+            "scissor": 0,
+            "boom": 1
+          }
+        ]
+      },
+      {
+        "name": "荆门市",
+        "scissor": 0,
+        "boom": 0,
+        "total": 0,
+        "sales": []
+      },
+      {
+        "name": "孝感市",
+        "scissor": 0,
+        "boom": 0,
+        "total": 0,
+        "sales": []
+      },
+      {
+        "name": "荆州市",
+        "scissor": 0,
+        "boom": 0,
+        "total": 0,
+        "sales": []
+      },
+      {
+        "name": "黄冈市",
+        "scissor": 0,
+        "boom": 0,
+        "total": 0,
+        "sales": []
+      },
+      {
+        "name": "咸宁市",
+        "scissor": 0,
+        "boom": 0,
+        "total": 0,
+        "sales": []
+      },
+      {
+        "name": "随州市",
+        "scissor": 0,
+        "boom": 0,
+        "total": 0,
+        "sales": []
+      },
+      {
+        "name": "恩施土家族苗族自治州",
+        "scissor": 0,
+        "boom": 0,
+        "total": 0,
+        "sales": []
+      },
+      {
+        "name": "仙桃市",
+        "scissor": 0,
+        "boom": 0,
+        "total": 0,
+        "sales": []
+      },
+      {
+        "name": "潜江市",
+        "scissor": 0,
+        "boom": 0,
+        "total": 0,
+        "sales": []
+      },
+      {
+        "name": "天门市",
+        "scissor": 0,
+        "boom": 0,
+        "total": 0,
+        "sales": []
+      },
+      {
+        "name": "神农架林区",
+        "scissor": 0,
+        "boom": 0,
+        "total": 0,
+        "sales": []
+      },
+      {
+        "name": "江岸区",
+        "scissor": 0,
+        "boom": 0,
+        "total": 0,
+        "sales": []
+      },
+      {
+        "name": "江汉区",
+        "scissor": 2,
+        "boom": 0,
+        "total": 2,
+        "sales": [
+          {
+            "name": "未填写业务员",
+            "scissor": 2,
+            "boom": 0
+          }
+        ]
+      },
+      {
+        "name": "硚口区",
+        "scissor": 0,
+        "boom": 0,
+        "total": 0,
+        "sales": []
+      },
+      {
+        "name": "汉阳区",
+        "scissor": 0,
+        "boom": 0,
+        "total": 0,
+        "sales": []
+      },
+      {
+        "name": "武昌区",
+        "scissor": 0,
+        "boom": 0,
+        "total": 0,
+        "sales": []
+      },
+      {
+        "name": "青山区",
+        "scissor": 0,
+        "boom": 0,
+        "total": 0,
+        "sales": []
+      },
+      {
+        "name": "洪山区",
+        "scissor": 3,
+        "boom": 0,
+        "total": 3,
+        "sales": [
+          {
+            "name": "未填写业务员",
+            "scissor": 3,
+            "boom": 0
+          }
+        ]
+      },
+      {
+        "name": "东西湖区",
+        "scissor": 0,
+        "boom": 0,
+        "total": 0,
+        "sales": []
+      },
+      {
+        "name": "汉南区",
+        "scissor": 0,
+        "boom": 0,
+        "total": 0,
+        "sales": []
+      },
+      {
+        "name": "蔡甸区",
+        "scissor": 1,
+        "boom": 1,
+        "total": 2,
+        "sales": [
+          {
+            "name": "未填写业务员",
+            "scissor": 1,
+            "boom": 1
+          }
+        ]
+      },
+      {
+        "name": "江夏区",
+        "scissor": 0,
+        "boom": 0,
+        "total": 0,
+        "sales": []
+      },
+      {
+        "name": "黄陂区",
+        "scissor": 0,
+        "boom": 0,
+        "total": 0,
+        "sales": []
+      },
+      {
+        "name": "新洲区",
+        "scissor": 0,
+        "boom": 0,
+        "total": 0,
+        "sales": []
+      },
+      {
+        "name": "未识别区域",
+        "scissor": 0,
+        "boom": 0,
+        "total": 0,
+        "sales": []
+      }
+    ],
+    "totals": {
+      "scissor": 7,
+      "boom": 2
+    },
+    "unknownSamples": [],
+    "unknownCount": 0
+  }
 }
