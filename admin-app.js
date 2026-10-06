@@ -66,6 +66,7 @@ const view = new DataView({
   unknownText: $('unknownText'),
   unknownSamples: $('unknownSamples'),
   regionSel: $('regionSel'),
+  typeSel: $('typeSel'),
   sumCard: $('mapSumCard'),
 });
 window.addEventListener('resize', () => view.resize());

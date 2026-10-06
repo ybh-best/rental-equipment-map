@@ -40,12 +40,13 @@ async function fetchWithMirrors(localUrl, repoPath) {
 
 class DataView {
   constructor(els) {
-    this.el = els; // {tbody, sumScissor, sumBoom, summaryRow, select, sub, map, mapTitle, unknownCard, unknownText, unknownSamples, regionSel, sumCard}
+    this.el = els; // {tbody, sumScissor, sumBoom, summaryRow, select, sub, map, mapTitle, unknownCard, unknownText, unknownSamples, regionSel, typeSel, sumCard}
     this.data = null;
     this.currentSales = '__ALL__';
     this.chart = null;
     this.geo = null;
     this.selectedRegions = null; // null=全选；否则为区域名数组（可空）
+    this.types = { scissor: true, boom: true }; // 设备类型勾选：默认全选
     this.onSalesChange = null;
 
     if (this.el.select) {
@@ -54,6 +55,42 @@ class DataView {
       });
     }
     if (this.el.regionSel) this._bindRegionSel();
+    if (this.el.typeSel) this._bindTypeSel();
+  }
+
+  /* 设备类型多选（剪刀车/臂车）：两项，不允许全不勾 */
+  _bindTypeSel() {
+    const root = this.el.typeSel;
+    const btn = root.querySelector('.rs-btn');
+    const list = root.querySelector('.rs-list');
+    btn.addEventListener('click', () => root.classList.toggle('open'));
+    document.addEventListener('click', (e) => {
+      if (!root.contains(e.target)) root.classList.remove('open');
+    });
+    list.addEventListener('change', () => {
+      const s = list.querySelector('input[value="scissor"]').checked;
+      const b = list.querySelector('input[value="boom"]').checked;
+      if (!s && !b) { /* 不允许空选择，勾回原先保持勾选的那项 */
+        const last = this.types.scissor ? 'scissor' : 'boom';
+        list.querySelector(`input[value="${last}"]`).checked = true;
+        this.types = { scissor: last === 'scissor', boom: last === 'boom' };
+      } else {
+        this.types = { scissor: s, boom: b };
+      }
+      this._paintTypeSel();
+      this.renderMap();
+    });
+  }
+
+  _paintTypeSel() {
+    const btn = this.el.typeSel.querySelector('.rs-btn');
+    const { scissor, boom } = this.types;
+    btn.textContent = (scissor && boom) ? '全部类型' : (scissor ? '剪刀车' : '臂车');
+  }
+
+  /* 按类型勾选折算某区域的台数 */
+  _typeVal(v) {
+    return (this.types.scissor ? v.scissor : 0) + (this.types.boom ? v.boom : 0);
   }
 
   /* 区域多选下拉组件：__ALL__ 与具体区域互斥；外部点击收起 */
@@ -250,19 +287,21 @@ class DataView {
       .filter((r) => !picking || picked.includes(r.name))
       .map((r) => {
         const v = this.getRegionView(r.name);
-        return { name: r.name, value: v.total, scissor: v.scissor, boom: v.boom };
+        return { name: r.name, value: this._typeVal(v), scissor: v.scissor, boom: v.boom };
       });
     const maxVal = Math.max(1, ...mapData.map((d) => d.value));
 
-    // 右下角汇总卡：当前地图所见区域的剪/臂/合计
+    // 右下角汇总卡：当前地图所见区域 + 当前业务员 + 勾选的设备类型
     let sumS = 0, sumB = 0;
     mapData.forEach((d) => { sumS += d.scissor; sumB += d.boom; });
     if (this.el.sumCard) {
+      const rows = [];
+      if (this.types.scissor) rows.push(`剪刀车 <b style="color:#1d4ed8">${sumS}</b> 台`);
+      if (this.types.boom) rows.push(`臂车 <b style="color:#c2410c">${sumB}</b> 台`);
+      const totalTxt = (this.types.scissor && this.types.boom)
+        ? `<br>合计 <b>${sumS + sumB}</b> 台` : '';
       this.el.sumCard.innerHTML =
-        `<b>当前地图汇总</b><br>` +
-        `剪刀车 <b style="color:#1d4ed8">${sumS}</b> 台 · ` +
-        `臂车 <b style="color:#c2410c">${sumB}</b> 台<br>` +
-        `合计 <b>${sumS + sumB}</b> 台`;
+        `<b>当前地图汇总</b><br>` + rows.join(' · ') + totalTxt;
       this.el.sumCard.style.display = '';
     }
 
@@ -316,11 +355,12 @@ class DataView {
         formatter: (p) => {
           const d = p.data || {};
           const s = d.scissor || 0, b = d.boom || 0, t = d.value || 0;
-          if (t === 0) return `<b>${p.name}</b><br/>暂无在租设备`;
-          return `<b style="font-size:14px">${p.name}</b><br/>` +
-                 `剪刀车：<b style="color:#7dd3fc">${s}</b> 台<br/>` +
-                 `臂　车：<b style="color:#fdba74">${b}</b> 台<br/>` +
-                 `合　计：<b>${t}</b> 台`;
+          if (t === 0) return `<b>${p.name}</b><br/>暂无在租设备（按当前类型筛选）`;
+          const lines = [`<b style="font-size:14px">${p.name}</b>`];
+          if (this.types.scissor) lines.push(`剪刀车：<b style="color:#7dd3fc">${s}</b> 台`);
+          if (this.types.boom) lines.push(`臂　车：<b style="color:#fdba74">${b}</b> 台`);
+          if (this.types.scissor && this.types.boom) lines.push(`合　计：<b>${t}</b> 台`);
+          return lines.join('<br/>');
         },
       },
       visualMap: {
@@ -347,7 +387,10 @@ class DataView {
               '恩施土家族苗族自治州': '恩施', '神农架林区': '神农架',
             }[p.name] || p.name;
             if ((d.value || 0) > 0) {
-              return `{n|${short}}\n{c|剪${d.scissor || 0}} {b|臂${d.boom || 0}}`;
+              const parts = [];
+              if (this.types.scissor) parts.push(`{c|剪${d.scissor || 0}}`);
+              if (this.types.boom) parts.push(`{b|臂${d.boom || 0}}`);
+              return `{n|${short}}\n` + parts.join(' ');
             }
             return ''; // 无数据区域不显示标签，避免拥挤（悬停时显示）
           },

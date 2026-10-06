@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>管理员 · 门店在租设备分布图</title>
-  <link id="mainCss" rel="stylesheet" href="./style.css?v=1.7.0">
+  <link id="mainCss" rel="stylesheet" href="./style.css?v=1.8.0">
   <script>
   /* 样式表看门狗：3.5 秒没加载出来就切 gcore 镜像，避免白屏 */
   (function () {
@@ -224,6 +224,14 @@
           <button type="button" class="rs-btn">全部区域</button>
           <div class="rs-list"></div>
         </div>
+        <label class="mt-label">类型：</label>
+        <div class="region-sel" id="typeSel">
+          <button type="button" class="rs-btn">全部类型</button>
+          <div class="rs-list">
+            <label class="rs-item"><input type="checkbox" value="scissor" checked><span>剪刀车</span></label>
+            <label class="rs-item"><input type="checkbox" value="boom" checked><span>臂车</span></label>
+          </div>
+        </div>
       </div>
       <div class="map-wrap">
         <div id="mapChart" class="map-box"></div>
@@ -292,7 +300,7 @@
   /* 第1组大库并行竞速；第2组业务脚本按序加载。全程非阻塞，失败自动切镜像/重试 */
   window.__boot(
     ['xlsx.full.min.js?v=1.5.0', 'echarts.min.js'],
-    ['access-code.js?v=1.6.0', 'parser.js?v=1.6.0', 'view.js?v=1.7.0', 'admin-app.js?v=1.7.0']
+    ['access-code.js?v=1.6.0', 'parser.js?v=1.6.0', 'view.js?v=1.8.0', 'admin-app.js?v=1.8.0']
   );
   </script>
 </body>

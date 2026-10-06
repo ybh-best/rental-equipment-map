@@ -12,6 +12,7 @@ const view = new DataView({
   mapTitle: $('mapTitle'),
   placeholder: $('mapPlaceholder'),
   regionSel: $('regionSel'),
+  typeSel: $('typeSel'),
   sumCard: $('mapSumCard'),
 });
 
