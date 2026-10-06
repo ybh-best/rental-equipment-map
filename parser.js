@@ -172,6 +172,10 @@ function findColumns(headers) {
     else if ((h.includes('最新定位') || h.includes('定位地址')) && cols.addr === undefined) cols.addr = i;
     else if (h === '租赁状态') cols.rent = i;
     else if (h === '占用单据') cols.doc = i;
+    else if (h === '位置') cols.loc = i;
+    else if (h === '运营门店') cols.store = i;
+    else if (h === '所属门店') cols.storeOwn = i;
+    else if (h === '服务权服务部名称') cols.dept = i;
   });
   return cols;
 }
@@ -218,6 +222,10 @@ function analyzeWorkbook(buffer, fileName, rentedOnlyOpt) {
     sales: cols.sales,
     rent: cols.rent,
     doc: cols.doc,
+    loc: cols.loc,
+    store: cols.store,
+    storeOwn: cols.storeOwn,
+    dept: cols.dept,
   };
   const hasRentInfo = ci.rent !== undefined || ci.doc !== undefined;
   const rentedOnly = rentedOnlyOpt && hasRentInfo;
@@ -257,13 +265,15 @@ function analyzeWorkbook(buffer, fileName, rentedOnlyOpt) {
     const addrRaw = cell(row, ci.addr);
     const addr = addrRaw == null ? '' : String(addrRaw).trim();
     let region = parseRegion(addr);
-    if (!region && row.length > 6) {
-      // v1.9.0：定位地址无法识别时，用G列（位置/仓库）文本做关键词宽松联想
-      const gRaw = row[6];
-      const gText = gRaw == null ? '' : String(gRaw).trim();
-      if (gText) {
-        region = guessRegionLoose(gText);
-        if (region) guessedRows++;
+    if (!region) {
+      // 定位地址（含省外）无法识别时，依次用位置/运营门店/所属门店/服务部名称做关键词联想
+      const fallbacks = [ci.loc, ci.store, ci.storeOwn, ci.dept];
+      for (const idx of fallbacks) {
+        const raw = cell(row, idx);
+        const text = raw == null ? '' : String(raw).trim();
+        if (!text || text === '-' || text.toLowerCase() === 'none') continue;
+        region = guessRegionLoose(text);
+        if (region) { guessedRows++; break; }
       }
     }
     if (!region) region = UNKNOWN_REGION;
