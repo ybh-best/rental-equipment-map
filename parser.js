@@ -109,6 +109,52 @@ function parseRegion(addr) {
   return DIST_ZONE[val];
 }
 
+/* ---------- v1.9.0 G列（位置/仓库名）宽松联想 ----------
+ * 仓名常无"武汉市"前缀（如"汉阳仓""仙桃仓""城投汉口仓"），parseRegion 识别不了；
+ * 这里在完整解析失败后，直接搜市州名/武汉区名/汉口/功能区关键词，取最先出现的 */
+const WUHAN_DIST_LOOSE = [
+  ['东西湖', ZONE_DXH], ['江岸', ZONE_DXH], ['江汉', ZONE_DXH], ['硚口', ZONE_DXH], ['黄陂', ZONE_DXH],
+  ['汉阳', ZONE_HY], ['汉南', ZONE_HY], ['蔡甸', ZONE_HY],
+  ['武昌', ZONE_WH], ['江夏', ZONE_WH],
+  ['青山', ZONE_XC], ['新洲', ZONE_XC],
+  ['汉口', ZONE_DXH],
+];
+// 洪山西侧地名（->武汉区域），与 addr 解析同口径
+const HONGSHAN_WEST_LOOSE = HONGSHAN_WEST_KW.map((kw) => [kw, ZONE_WH]);
+
+function guessRegionLoose(text) {
+  if (!text) return null;
+  const s = String(text).replace(/\s+/g, '');
+  const direct = parseRegion(s);
+  if (direct) return direct;
+  const cand = [];
+  OTHER_CITIES.forEach((city) => {
+    const p = s.indexOf(cityKeyword(city));
+    if (p >= 0) cand.push([p, city]);
+  });
+  const pEz = s.indexOf('鄂州');
+  if (pEz >= 0) cand.push([pEz, ZONE_XC]);
+  const pHs = s.indexOf('洪山');
+  if (pHs >= 0) {
+    cand.push([pHs, HONGSHAN_WEST_KW.some((kw) => s.includes(kw)) ? ZONE_WH : ZONE_XC]);
+  }
+  WUHAN_DIST_LOOSE.forEach(([kw, z]) => {
+    const p = s.indexOf(kw);
+    if (p >= 0) cand.push([p, z]);
+  });
+  HONGSHAN_WEST_LOOSE.forEach(([kw, z]) => {
+    const p = s.indexOf(kw);
+    if (p >= 0) cand.push([p, z]);
+  });
+  WUHAN_ZONE_DIRECT.forEach(([kw, z]) => {
+    const p = s.indexOf(kw);
+    if (p >= 0) cand.push([p, z]);
+  });
+  if (!cand.length) return null;
+  cand.sort((a, b) => a[0] - b[0]);
+  return cand[0][1];
+}
+
 /* 表头定位关键列 */
 function findColumns(headers) {
   const hn = headers.map(norm);
@@ -184,6 +230,7 @@ function analyzeWorkbook(buffer, fileName, rentedOnlyOpt) {
   const unknownSamples = [];
   let totalRows = 0;
   let countedRows = 0;
+  let guessedRows = 0; // 定位地址无法识别、靠G列关键词联想成功的行数
 
   const cell = (row, idx) => (idx !== undefined && idx < row.length ? row[idx] : null);
 
@@ -209,7 +256,17 @@ function analyzeWorkbook(buffer, fileName, rentedOnlyOpt) {
 
     const addrRaw = cell(row, ci.addr);
     const addr = addrRaw == null ? '' : String(addrRaw).trim();
-    const region = parseRegion(addr) || UNKNOWN_REGION;
+    let region = parseRegion(addr);
+    if (!region && row.length > 6) {
+      // v1.9.0：定位地址无法识别时，用G列（位置/仓库）文本做关键词宽松联想
+      const gRaw = row[6];
+      const gText = gRaw == null ? '' : String(gRaw).trim();
+      if (gText) {
+        region = guessRegionLoose(gText);
+        if (region) guessedRows++;
+      }
+    }
+    if (!region) region = UNKNOWN_REGION;
     const kind = isScissor ? 'scissor' : 'boom';
 
     if (!salespeople.has(name)) salespeople.set(name, emptyCount());
@@ -276,5 +333,6 @@ function analyzeWorkbook(buffer, fileName, rentedOnlyOpt) {
     totals,
     unknownSamples,
     unknownCount: unk.scissor + unk.boom,
+    guessedRows,
   };
 }

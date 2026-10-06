@@ -316,6 +316,7 @@ async function parseFile(file) {
             + ` · 共 ${DATA.totalRows} 行，计入 ${DATA.countedRows} 台`;
     if (DATA.filteredOut > 0) msg += `（排除非在租 ${DATA.filteredOut} 台）`;
     msg += ` · 剪刀车 ${DATA.totals.scissor} / 臂车 ${DATA.totals.boom}，核对无误后请发布`;
+    if (DATA.guessedRows > 0) msg += `（🔎 ${DATA.guessedRows} 台无定位，已按「位置」列关键词联想归区）`;
     if (DATA.unknownCount > 0) msg += `（⚠️ ${DATA.unknownCount} 台未识别区域）`;
     const el = $('parseStatus');
     el.innerHTML = msg;
@@ -409,6 +410,9 @@ $('publishBtn').addEventListener('click', async () => {
     `计入设备：<b>${DATA.countedRows}</b> 台（剪刀车 ${DATA.totals.scissor} / 臂车 ${DATA.totals.boom}）`,
     `统计口径：<b>${DATA.rentedOnly ? '仅在租' : '全部状态'}</b> · 业务员 ${DATA.salespeople.length} 位`,
   ];
+  if (DATA.guessedRows > 0) {
+    items.push(`<span class="warn-text">🔎 ${DATA.guessedRows} 台无GPS定位，已按「位置」列关键词联想归区（如"汉阳仓"→汉阳区域）</span>`);
+  }
   if (DATA.unknownCount > 0) {
     items.push(`<span class="warn-text">⚠️ 未识别区域 ${DATA.unknownCount} 台（不计入地图，发布前请确认）</span>`);
   }
