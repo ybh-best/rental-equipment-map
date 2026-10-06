@@ -19,6 +19,8 @@ const TOKEN_KEY = 'gh_pat_rental_equipment_map';
 const $ = (id) => document.getElementById(id);
 let DATA = null;       // 当前解析结果
 let lastFile = null;
+let lastBuffer = null;       // 最近一次解析的原始 ArrayBuffer（用于应用归类后重解析）
+let lastFileName = '';
 let ghUser = null;
 let publishing = false;      // 发布进行中（锁定按钮 + 拦截离开）
 let parsing = false;         // Excel 解析进行中（防止重复上传产生竞态）
@@ -308,7 +310,10 @@ async function parseFile(file) {
   try {
     await loadRegions();
     const buffer = await file.arrayBuffer();
-    DATA = analyzeWorkbook(buffer, file.name, $('rentedOnly').checked);
+    lastBuffer = buffer;
+    lastFileName = file.name;
+    const overrides = loadLocationOverrides();
+    DATA = analyzeWorkbook(buffer, file.name, $('rentedOnly').checked, overrides);
     await view.loadGeo();
     view.setData(DATA);
     const secs = ((performance.now() - t0) / 1000).toFixed(1);
@@ -317,20 +322,106 @@ async function parseFile(file) {
     if (DATA.filteredOut > 0) msg += `（排除非在租 ${DATA.filteredOut} 台）`;
     msg += ` · 剪刀车 ${DATA.totals.scissor} / 臂车 ${DATA.totals.boom}，核对无误后请发布`;
     if (DATA.guessedRows > 0) msg += `（🔎 ${DATA.guessedRows} 台无定位，已按「位置」列关键词联想归区）`;
-    if (DATA.unknownCount > 0) msg += `（⚠️ ${DATA.unknownCount} 台未识别区域）`;
+    if (DATA.unknownCount > 0) msg += `（⚠️ ${DATA.unknownCount} 台未识别，可在下方手动归类）`;
     const el = $('parseStatus');
     el.innerHTML = msg;
     el.className = 'step-status ok';
     $('tableSub').textContent = `共 ${DATA.salespeople.length} 位业务员 · 此为发布后访问者所见数据`;
+    renderManualAssign();
   } catch (e) {
     DATA = null;
     setStatus($('parseStatus'), '❌ ' + (e.message || '解析失败'), 'err');
+    $('manualAssign').style.display = 'none';
   } finally {
     parsing = false;
     $('loading').style.display = 'none';
     updatePublishBtn();
   }
 }
+
+/* ---------------- 手动归类（位置 -> 区域）记忆 ---------------- */
+const LOC_OVERRIDE_KEY = 'rental_loc_overrides_v1';
+function loadLocationOverrides() {
+  try { return JSON.parse(localStorage.getItem(LOC_OVERRIDE_KEY)) || {}; } catch (e) { return {}; }
+}
+function saveLocationOverrides(map) {
+  try { localStorage.setItem(LOC_OVERRIDE_KEY, JSON.stringify(map)); } catch (e) { /* ignore */ }
+}
+
+function renderManualAssign() {
+  const wrap = $('manualAssign');
+  if (!DATA || !DATA.unknownLocations || DATA.unknownLocations.length === 0) {
+    wrap.style.display = 'none';
+    return;
+  }
+  wrap.style.display = '';
+  const rowsEl = $('manualRows');
+  rowsEl.innerHTML = '';
+  const regions = window.REGION_ORDER || [];
+  DATA.unknownLocations.forEach((loc) => {
+    const row = document.createElement('div');
+    row.className = 'ma-row';
+    const sel = document.createElement('select');
+    sel.dataset.loc = loc.location;
+    sel.innerHTML = '<option value="">请选择区域…</option>' +
+      regions.map((r) => `<option value="${escHtml(r)}">${escHtml(r)}</option>`).join('');
+    row.innerHTML =
+      `<span class="ma-col-loc" title="${escHtml(loc.location)}">${escHtml(loc.location)}</span>` +
+      `<span class="ma-col-cnt">${loc.scissor}/${loc.boom}</span>`;
+    const td = document.createElement('span');
+    td.className = 'ma-col-sel';
+    td.appendChild(sel);
+    row.appendChild(td);
+    rowsEl.appendChild(row);
+  });
+  $('assignTip').textContent = `共 ${DATA.unknownCount} 台未识别，已记忆 ${Object.keys(loadLocationOverrides()).length} 个位置归类`;
+}
+
+$('applyAssignBtn').addEventListener('click', async () => {
+  const selects = $('manualRows').querySelectorAll('select');
+  const overrides = loadLocationOverrides();
+  let added = 0;
+  selects.forEach((sel) => {
+    if (sel.value) {
+      overrides[sel.dataset.loc] = sel.value;
+      added++;
+    }
+  });
+  if (added === 0) {
+    $('assignTip').textContent = '请至少为一个位置选择区域';
+    return;
+  }
+  saveLocationOverrides(overrides);
+  // 用新记忆重新解析
+  if (lastBuffer) {
+    $('loadingText').textContent = '应用归类中…';
+    $('loading').style.display = 'flex';
+    try {
+      const data = analyzeWorkbook(lastBuffer, lastFileName, $('rentedOnly').checked, overrides);
+      DATA = data;
+      view.setData(data);
+      renderManualAssign();
+      // 更新解析状态行里的未识别数
+      const msg = `✅ 已应用归类（${added} 个位置）` +
+        (data.unknownCount > 0
+          ? `，仍有 ${data.unknownCount} 台未识别`
+          : `，全部设备已归区 🎉`);
+      setStatus($('parseStatus'), msg, 'ok');
+    } catch (e) {
+      setStatus($('parseStatus'), '❌ 重解析失败：' + (e.message || e), 'err');
+    } finally {
+      $('loading').style.display = 'none';
+      updatePublishBtn();
+    }
+  }
+});
+
+$('clearMemBtn').addEventListener('click', () => {
+  if (confirm('清除所有位置归类记忆？下次上传这些位置将重新变为未识别。')) {
+    localStorage.removeItem(LOC_OVERRIDE_KEY);
+    $('assignTip').textContent = '已清除记忆，重新上传后生效';
+  }
+});
 
 /* ---------------- 发布 ---------------- */
 function updatePublishBtn() {

@@ -223,6 +223,32 @@ tfoot td.col-name { text-align: left; }
   font-size: 13px; line-height: 1.7; color: #334155;
 }
 
+/* ===== 手动归类面板 ===== */
+.manual-assign {
+  margin: 0 14px 12px;
+  padding: 12px 14px;
+  background: #f8fafc;
+  border: 1px solid var(--line); border-radius: 10px;
+}
+.ma-head { display: flex; flex-direction: column; gap: 4px; margin-bottom: 8px; }
+.ma-head b { font-size: 14px; color: #1e293b; }
+.ma-tip { font-size: 12px; color: #64748b; }
+.ma-table { display: flex; flex-direction: column; gap: 2px; }
+.ma-row {
+  display: grid; grid-template-columns: 1fr 80px 200px;
+  gap: 8px; align-items: center;
+  padding: 6px 8px; border-radius: 6px;
+}
+.ma-head-row { font-size: 12px; font-weight: 600; color: #475569; border-bottom: 1px solid #e2e8f0; }
+.ma-row:not(.ma-head-row) { background: #fff; border: 1px solid #eef2f7; }
+.ma-col-loc { font-size: 13px; color: #334155; word-break: break-all; }
+.ma-col-cnt { font-size: 13px; color: #1d4ed8; text-align: center; }
+.ma-col-sel select {
+  width: 100%; padding: 4px 6px; border: 1px solid var(--line); border-radius: 6px;
+  background: #fff; font-size: 13px; color: #334155;
+}
+.ma-actions { margin-top: 10px; display: flex; align-items: center; gap: 10px; }
+
 .unknown-card {
   margin: 0 14px 12px;
   padding: 10px 12px;

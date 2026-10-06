@@ -47,6 +47,7 @@ const OTHER_CITIES = [
 ];
 // 聚合输出顺序（地图按名称匹配，顺序仅影响 regions 数组）
 const REGION_ORDER = OTHER_CITIES.concat(ZONE_NAMES);
+window.REGION_ORDER = REGION_ORDER; // 导出给手动归类下拉用
 
 let GEO = null;
 
@@ -205,8 +206,10 @@ function emptyCount() {
   return { scissor: 0, boom: 0 };
 }
 
-/* 解析 ArrayBuffer，返回与旧版后端一致的聚合结果 */
-function analyzeWorkbook(buffer, fileName, rentedOnlyOpt) {
+/* 解析 ArrayBuffer，返回与旧版后端一致的聚合结果
+ * locationOverrides: {位置文本: 区域名} —— 用于自动联想失败时的手动归类记忆 */
+function analyzeWorkbook(buffer, fileName, rentedOnlyOpt, locationOverrides) {
+  const overrides = locationOverrides || {};
   const wb = XLSX.read(buffer, { type: 'array' });
   const ws = wb.Sheets[wb.SheetNames[0]];
   const rows = XLSX.utils.sheet_to_json(ws, { header: 1, defval: null, raw: false });
@@ -236,6 +239,7 @@ function analyzeWorkbook(buffer, fileName, rentedOnlyOpt) {
   const regionTotals = {};
   regionOrder.forEach((n) => { regionTotals[n] = emptyCount(); });
   const unknownSamples = [];
+  const unknownLocations = new Map(); // 位置文本 -> {count, scissor, boom, names:[业务员]}
   let totalRows = 0;
   let countedRows = 0;
   let guessedRows = 0; // 定位地址无法识别、靠G列关键词联想成功的行数
@@ -266,15 +270,18 @@ function analyzeWorkbook(buffer, fileName, rentedOnlyOpt) {
     const addr = addrRaw == null ? '' : String(addrRaw).trim();
     let region = parseRegion(addr);
     if (!region) {
-      // 定位地址（含省外）无法识别时，依次用位置/运营门店/所属门店/服务部名称做关键词联想
-      const fallbacks = [ci.loc, ci.store, ci.storeOwn, ci.dept];
-      for (const idx of fallbacks) {
-        const raw = cell(row, idx);
-        const text = raw == null ? '' : String(raw).trim();
-        if (!text || text === '-' || text.toLowerCase() === 'none') continue;
+      // 定位地址（含省外）无法识别时，仅用G列「位置」文本做关键词联想
+      const raw = cell(row, ci.loc);
+      const text = raw == null ? '' : String(raw).trim();
+      if (text && text !== '-' && text.toLowerCase() !== 'none') {
         region = guessRegionLoose(text);
-        if (region) { guessedRows++; break; }
+        if (region) guessedRows++;
       }
+    }
+    // 手动归类记忆覆盖（位置文本 -> 区域）
+    if (!region) {
+      const locKey = (cell(row, ci.loc) == null ? '' : String(cell(row, ci.loc)).trim()) || '(位置为空)';
+      if (overrides[locKey]) region = overrides[locKey];
     }
     if (!region) region = UNKNOWN_REGION;
     const kind = isScissor ? 'scissor' : 'boom';
@@ -287,8 +294,16 @@ function analyzeWorkbook(buffer, fileName, rentedOnlyOpt) {
     if (!rm.has(name)) rm.set(name, emptyCount());
     rm.get(name)[kind]++;
 
-    if (region === UNKNOWN_REGION && addr && unknownSamples.length < 10) {
-      unknownSamples.push(addr);
+    if (region === UNKNOWN_REGION) {
+      if (addr && unknownSamples.length < 10) unknownSamples.push(addr);
+      const locText = (cell(row, ci.loc) == null ? '' : String(cell(row, ci.loc)).trim()) || '(位置为空)';
+      if (!unknownLocations.has(locText)) {
+        unknownLocations.set(locText, { count: 0, scissor: 0, boom: 0, names: new Set() });
+      }
+      const u = unknownLocations.get(locText);
+      u.count++;
+      u[isScissor ? 'scissor' : 'boom']++;
+      if (name !== UNKNOWN_SALES) u.names.add(name);
     }
   }
 
@@ -343,6 +358,10 @@ function analyzeWorkbook(buffer, fileName, rentedOnlyOpt) {
     totals,
     unknownSamples,
     unknownCount: unk.scissor + unk.boom,
+    unknownLocations: [...unknownLocations.entries()].map(([loc, v]) => ({
+      location: loc, count: v.count, scissor: v.scissor, boom: v.boom,
+      names: [...v.names],
+    })).sort((a, b) => b.count - a.count),
     guessedRows,
   };
 }

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>管理员 · 门店在租设备分布图</title>
-  <link id="mainCss" rel="stylesheet" href="./style.css?v=1.8.0">
+  <link id="mainCss" rel="stylesheet" href="./style.css?v=1.9.2">
   <script>
   /* 样式表看门狗：3.5 秒没加载出来就切 gcore 镜像，避免白屏 */
   (function () {
@@ -247,6 +247,25 @@
         <span id="unknownText"></span>
         <div id="unknownSamples" class="unknown-samples"></div>
       </div>
+      <div id="manualAssign" class="manual-assign" style="display:none">
+        <div class="ma-head">
+          <b>🔧 手动归类（位置无法自动联想的设备）</b>
+          <span class="ma-tip">为下列「位置」选择对应区域，应用后计入地图；归类会记忆，下次同位置自动归区</span>
+        </div>
+        <div class="ma-table">
+          <div class="ma-row ma-head-row">
+            <span class="ma-col-loc">位置</span>
+            <span class="ma-col-cnt">剪/臂</span>
+            <span class="ma-col-sel">归属区域</span>
+          </div>
+          <div id="manualRows"></div>
+        </div>
+        <div class="ma-actions">
+          <button type="button" id="applyAssignBtn" class="btn primary">应用归类</button>
+          <button type="button" id="clearMemBtn" class="btn ghost">清除记忆</button>
+          <span id="assignTip" class="ma-tip"></span>
+        </div>
+      </div>
     </section>
   </main>
 
@@ -300,7 +319,7 @@
   /* 第1组大库并行竞速；第2组业务脚本按序加载。全程非阻塞，失败自动切镜像/重试 */
   window.__boot(
     ['xlsx.full.min.js?v=1.5.0', 'echarts.min.js'],
-    ['access-code.js?v=1.6.0', 'parser.js?v=1.9.1', 'view.js?v=1.8.0', 'admin-app.js?v=1.9.0']
+    ['access-code.js?v=1.6.0', 'parser.js?v=1.9.2', 'view.js?v=1.8.0', 'admin-app.js?v=1.9.2']
   );
   </script>
 </body>
