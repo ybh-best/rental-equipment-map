@@ -382,8 +382,9 @@ $('applyAssignBtn').addEventListener('click', async () => {
   const overrides = loadLocationOverrides();
   let added = 0;
   selects.forEach((sel) => {
-    if (sel.value) {
-      overrides[sel.dataset.loc] = sel.value;
+    const loc = sel.dataset.loc;
+    if (sel.value && loc) {
+      overrides[loc] = sel.value;
       added++;
     }
   });
