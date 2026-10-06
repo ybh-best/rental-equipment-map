@@ -11,6 +11,8 @@ const view = new DataView({
   map: $('mapChart'),
   mapTitle: $('mapTitle'),
   placeholder: $('mapPlaceholder'),
+  regionSel: $('regionSel'),
+  sumCard: $('mapSumCard'),
 });
 
 window.addEventListener('resize', () => view.resize());

@@ -177,6 +177,52 @@ tfoot td.col-name { text-align: left; }
 .ph-icon { font-size: 56px; margin-bottom: 10px; }
 .ph-tip { font-size: 12px; margin-top: 6px; color: #94a3b8; }
 
+/* ===== 地图工具条：区域多选下拉 ===== */
+.map-toolbar {
+  display: flex; align-items: center; gap: 8px;
+  padding: 6px 14px 4px;
+  border-top: 1px solid #eef2f7;
+}
+.mt-label { font-size: 13px; color: var(--muted); font-weight: 600; }
+.region-sel { position: relative; }
+.region-sel .rs-btn {
+  min-width: 150px; text-align: left;
+  padding: 5px 26px 5px 10px;
+  border: 1px solid var(--line); border-radius: 8px;
+  background: #fff; color: #334155; font-size: 13px;
+  cursor: pointer; position: relative;
+}
+.region-sel .rs-btn::after {
+  content: '▾'; position: absolute; right: 9px; top: 50%;
+  transform: translateY(-50%); color: #94a3b8; font-size: 11px;
+}
+.region-sel.open .rs-btn { border-color: #1d4ed8; box-shadow: 0 0 0 3px rgba(29,78,216,.12); }
+.region-sel .rs-list {
+  display: none; position: absolute; z-index: 30; top: calc(100% + 4px); left: 0;
+  min-width: 190px; max-height: 260px; overflow: auto;
+  background: #fff; border: 1px solid var(--line); border-radius: 10px;
+  box-shadow: 0 10px 26px rgba(15,40,90,.16);
+  padding: 4px;
+}
+.region-sel.open .rs-list { display: block; }
+.region-sel .rs-item {
+  display: flex; align-items: center; gap: 8px;
+  padding: 6px 8px; border-radius: 6px;
+  font-size: 13px; color: #334155; cursor: pointer;
+}
+.region-sel .rs-item:hover { background: #eef4ff; }
+.region-sel .rs-item input { accent-color: #1d4ed8; margin: 0; }
+
+/* 地图右下角汇总卡 */
+.map-sum {
+  position: absolute; right: 14px; bottom: 14px; z-index: 20;
+  background: rgba(255,255,255,.94);
+  border: 1px solid var(--line); border-radius: 10px;
+  box-shadow: 0 6px 18px rgba(15,40,90,.14);
+  padding: 8px 12px;
+  font-size: 13px; line-height: 1.7; color: #334155;
+}
+
 .unknown-card {
   margin: 0 14px 12px;
   padding: 10px 12px;

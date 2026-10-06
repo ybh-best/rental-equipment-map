@@ -40,11 +40,12 @@ async function fetchWithMirrors(localUrl, repoPath) {
 
 class DataView {
   constructor(els) {
-    this.el = els; // {tbody, sumScissor, sumBoom, summaryRow, select, sub, map, mapTitle, unknownCard, unknownText, unknownSamples}
+    this.el = els; // {tbody, sumScissor, sumBoom, summaryRow, select, sub, map, mapTitle, unknownCard, unknownText, unknownSamples, regionSel, sumCard}
     this.data = null;
     this.currentSales = '__ALL__';
     this.chart = null;
     this.geo = null;
+    this.selectedRegions = null; // null=全选；否则为区域名数组（可空）
     this.onSalesChange = null;
 
     if (this.el.select) {
@@ -52,6 +53,80 @@ class DataView {
         this.setSales(this.el.select.value);
       });
     }
+    if (this.el.regionSel) this._bindRegionSel();
+  }
+
+  /* 区域多选下拉组件：__ALL__ 与具体区域互斥；外部点击收起 */
+  _bindRegionSel() {
+    const root = this.el.regionSel;
+    const btn = root.querySelector('.rs-btn');
+    const list = root.querySelector('.rs-list');
+    btn.addEventListener('click', () => root.classList.toggle('open'));
+    document.addEventListener('click', (e) => {
+      if (!root.contains(e.target)) root.classList.remove('open');
+    });
+    list.addEventListener('change', (e) => {
+      const t = e.target;
+      if (t.value === '__ALL__') {
+        if (t.checked) {
+          list.querySelectorAll('input').forEach((i) => {
+            if (i !== t) i.checked = false;
+          });
+        } else {
+          t.checked = true; /* 不允许空选择 */
+        }
+      } else if (t.checked) {
+        list.querySelector('input[value="__ALL__"]').checked = false;
+      } else if (!list.querySelector('input:checked')) {
+        list.querySelector('input[value="__ALL__"]').checked = true;
+      }
+      this.selectedRegions = this._readRegionSel();
+      this._paintRegionSel();
+      this.renderMap();
+    });
+  }
+
+  _readRegionSel() {
+    const list = this.el.regionSel.querySelector('.rs-list');
+    if (!list) return null;
+    const all = list.querySelector('input[value="__ALL__"]');
+    if (all.checked) return null;
+    const picked = [];
+    list.querySelectorAll('input:checked').forEach((i) => picked.push(i.value));
+    return picked.length ? picked : null;
+  }
+
+  _paintRegionSel() {
+    const btn = this.el.regionSel.querySelector('.rs-btn');
+    const picked = this.selectedRegions;
+    if (!picked) {
+      btn.textContent = '全部区域';
+      return;
+    }
+    if (picked.length === 1) btn.textContent = picked[0];
+    else if (picked.length <= 2) btn.textContent = picked.join('、');
+    else btn.textContent = `已选 ${picked.length} 个区域`;
+  }
+
+  renderRegionSel() {
+    if (!this.el.regionSel) return;
+    const list = this.el.regionSel.querySelector('.rs-list');
+    list.innerHTML = '';
+    const names = ['__ALL__'].concat(
+      this.data.regions.filter((r) => r.name !== UNKNOWN_REGION).map((r) => r.name)
+    );
+    names.forEach((n) => {
+      const id = 'rs-' + this.el.regionSel.id + '-' + encodeURIComponent(n).replace(/%/g, '');
+      const lb = document.createElement('label');
+      lb.className = 'rs-item';
+      lb.htmlFor = id;
+      lb.innerHTML =
+        `<input type="checkbox" id="${id}" value="${esc(n)}"${n === '__ALL__' ? ' checked' : ''}>` +
+        `<span>${esc(n === '__ALL__' ? '全部区域' : n)}</span>`;
+      list.appendChild(lb);
+    });
+    this.selectedRegions = null;
+    this._paintRegionSel();
   }
 
   async loadGeo() {
@@ -64,6 +139,7 @@ class DataView {
   setData(data) {
     this.data = data;
     this.currentSales = '__ALL__';
+    this.selectedRegions = null;
     if (this.el.select) this.el.select.value = '__ALL__';
     this.renderAll();
   }
@@ -80,6 +156,7 @@ class DataView {
   renderAll() {
     if (this.el.placeholder) this.el.placeholder.style.display = 'none';
     this.renderSelect();
+    this.renderRegionSel();
     this.renderTable();
     this.renderUnknown();
     this.renderMap();
@@ -161,13 +238,33 @@ class DataView {
     if (!this.chart) this.chart = echarts.init(this.el.map);
     const geo = await this.loadGeo();
 
+    // 区域筛选：null=全省；否则只保留选中的区域几何
+    const picked = this.selectedRegions;
+    const picking = Array.isArray(picked);
+    const viewGeo = picking
+      ? { type: 'FeatureCollection', features: geo.features.filter((f) => picked.includes(f.properties.name)) }
+      : geo;
+
     const mapData = this.data.regions
       .filter((r) => r.name !== UNKNOWN_REGION)
+      .filter((r) => !picking || picked.includes(r.name))
       .map((r) => {
         const v = this.getRegionView(r.name);
         return { name: r.name, value: v.total, scissor: v.scissor, boom: v.boom };
       });
     const maxVal = Math.max(1, ...mapData.map((d) => d.value));
+
+    // 右下角汇总卡：当前地图所见区域的剪/臂/合计
+    let sumS = 0, sumB = 0;
+    mapData.forEach((d) => { sumS += d.scissor; sumB += d.boom; });
+    if (this.el.sumCard) {
+      this.el.sumCard.innerHTML =
+        `<b>当前地图汇总</b><br>` +
+        `剪刀车 <b style="color:#1d4ed8">${sumS}</b> 台 · ` +
+        `臂车 <b style="color:#c2410c">${sumB}</b> 台<br>` +
+        `合计 <b>${sumS + sumB}</b> 台`;
+      this.el.sumCard.style.display = '';
+    }
 
     // 鱼眼变形：地图保持完整连通，有数据的区域按台数在原位"鼓起来"，
     // 周围区域被平滑压缩让位（同一连续函数作用于所有顶点，边界不裂开）
@@ -176,7 +273,7 @@ class DataView {
     const bumps = [];
     mapData.forEach((d) => {
       if (d.value <= 0) return;
-      const ft = geo.features.find((f) => f.properties.name === d.name);
+      const ft = viewGeo.features.find((f) => f.properties.name === d.name);
       if (!ft) return;
       const bb = geoBBox(ft.geometry);
       bumps.push({
@@ -199,12 +296,15 @@ class DataView {
     mapData.forEach((d) => {
       if (LABEL_OFFSET[d.name]) d.label = { offset: LABEL_OFFSET[d.name] };
     });
-    echarts.registerMap('hubei', morphGeo(geo, bumps));
+    echarts.registerMap('hubei', morphGeo(viewGeo, bumps));
 
     if (this.el.mapTitle) {
+      const regionPart = picking
+        ? (picked.length <= 3 ? picked.join('、') : `${picked.length} 个区域`)
+        : '湖北省';
       this.el.mapTitle.textContent = this.currentSales === '__ALL__'
-        ? '湖北省在租设备分布（全部数据）'
-        : `${this.currentSales} 的在租设备分布`;
+        ? `${regionPart}在租设备分布（全部数据）`
+        : `${this.currentSales} · ${regionPart}在租设备分布`;
     }
 
     this.chart.setOption({
