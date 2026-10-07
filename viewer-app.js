@@ -63,7 +63,7 @@ async function loadPublished() {
     let msg = `📊 ${json.fileName || '已发布数据'} · 共 ${d.totalRows} 行，计入 ${d.countedRows} 台`;
     if (d.filteredOut > 0) msg += `（已排除非在租 ${d.filteredOut} 台）`;
     $('fileInfo').textContent = msg;
-    $('tableSub').textContent = `共 ${d.salespeople.length} 位业务员 · 点击行可筛选地图`;
+    $('tableSub').textContent = `共 ${d.salespeople.length} 位业务员 · 单击行筛选 · 双击回汇总 · 点表头排序`;
     $('publishInfo').textContent = `数据更新于 ${fmtTime(json.updatedAt)}（剪刀车 ${d.totals.scissor} 台 / 臂车 ${d.totals.boom} 台）`;
   } catch (e) {
     if (String(e.message).includes('404')) {

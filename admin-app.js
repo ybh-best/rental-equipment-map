@@ -326,7 +326,7 @@ async function parseFile(file) {
     const el = $('parseStatus');
     el.innerHTML = msg;
     el.className = 'step-status ok';
-    $('tableSub').textContent = `共 ${DATA.salespeople.length} 位业务员 · 此为发布后访问者所见数据`;
+    $('tableSub').textContent = `共 ${DATA.salespeople.length} 位业务员 · 此为发布后访问者所见数据（单击行筛选 / 双击回汇总 / 点表头排序）`;
     renderManualAssign();
   } catch (e) {
     DATA = null;

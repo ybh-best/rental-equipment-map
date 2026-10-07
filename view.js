@@ -47,6 +47,8 @@ class DataView {
     this.geo = null;
     this.selectedRegions = null; // null=全选；否则为区域名数组（可空）
     this.types = { scissor: true, boom: true }; // 设备类型勾选：默认全选
+    this.sortKey = null;  // 表格排序：null=默认顺序 | 'scissor' | 'boom'
+    this.sortDir = 'desc';
     this.onSalesChange = null;
 
     if (this.el.select) {
@@ -56,6 +58,45 @@ class DataView {
     }
     if (this.el.regionSel) this._bindRegionSel();
     if (this.el.typeSel) this._bindTypeSel();
+    if (this.el.summaryRow) {
+      this.el.summaryRow.classList.add('summary-clickable');
+      this.el.summaryRow.title = '点击返回全部数据（汇总）';
+      this.el.summaryRow.addEventListener('click', () => this.setSales('__ALL__'));
+    }
+    this._bindSortHeader();
+  }
+
+  /* 数值列表头（剪刀车/臂车）点击排序：降序 → 升序 → 恢复默认，两列相互独立 */
+  _bindSortHeader() {
+    if (!this.el.tbody) return;
+    const table = this.el.tbody.closest('table');
+    if (!table) return;
+    const ths = table.querySelectorAll('thead th.col-num');
+    ths.forEach((th, i) => {
+      th.classList.add('th-sort');
+      th.dataset.key = i === 0 ? 'scissor' : 'boom';
+      th.title = '点击按此列排序（降序 → 升序 → 默认）';
+      th.addEventListener('click', () => {
+        const key = th.dataset.key;
+        if (this.sortKey !== key) { this.sortKey = key; this.sortDir = 'desc'; }
+        else if (this.sortDir === 'desc') { this.sortDir = 'asc'; }
+        else { this.sortKey = null; this.sortDir = 'desc'; }
+        this._paintSort();
+        this.renderTable();
+      });
+    });
+  }
+
+  _paintSort() {
+    if (!this.el.tbody) return;
+    const table = this.el.tbody.closest('table');
+    if (!table) return;
+    table.querySelectorAll('thead th.col-num').forEach((th) => {
+      th.classList.remove('sort-asc', 'sort-desc');
+      if (this.sortKey && th.dataset.key === this.sortKey) {
+        th.classList.add(this.sortDir === 'asc' ? 'sort-asc' : 'sort-desc');
+      }
+    });
   }
 
   /* 设备类型多选（剪刀车/臂车）：两项，不允许全不勾 */
@@ -216,19 +257,27 @@ class DataView {
   renderTable() {
     const tbody = this.el.tbody;
     tbody.innerHTML = '';
-    this.data.salespeople.forEach((s) => {
+    let rows = this.data.salespeople;
+    if (this.sortKey) {
+      const key = this.sortKey, dir = this.sortDir === 'asc' ? 1 : -1;
+      rows = rows.slice().sort((a, b) => (a[key] - b[key]) * dir);
+    }
+    rows.forEach((s) => {
       const tr = document.createElement('tr');
       if (s.name === this.currentSales) tr.className = 'active';
+      tr.title = '单击筛选该业务员，双击返回全部汇总';
       tr.innerHTML =
         `<td class="col-name">${esc(s.name)}</td>` +
         `<td class="col-num">${s.scissor}</td>` +
         `<td class="col-num">${s.boom}</td>`;
       tr.addEventListener('click', () => this.setSales(s.name));
+      tr.addEventListener('dblclick', () => this.setSales('__ALL__'));
       tbody.appendChild(tr);
     });
     if (this.el.sumScissor) this.el.sumScissor.textContent = this.data.totals.scissor;
     if (this.el.sumBoom) this.el.sumBoom.textContent = this.data.totals.boom;
     if (this.el.summaryRow) this.el.summaryRow.style.display = '';
+    this._paintSort();
   }
 
   getRegionView(regionName) {

@@ -149,6 +149,16 @@ tfoot td {
   font-variant-numeric: tabular-nums;
 }
 tfoot td.col-name { text-align: left; }
+/* 合计行可点击：返回全部数据（汇总） */
+tfoot tr.summary-row { cursor: pointer; }
+tfoot tr.summary-row:hover td { background: #dbeafe; }
+
+/* 数值列表头排序：降序 → 升序 → 默认 */
+thead th.th-sort { cursor: pointer; user-select: none; }
+thead th.th-sort:hover { background: #2b4bb0; }
+thead th.th-sort::after { content: '⇅'; margin-left: 4px; font-size: 11px; opacity: .65; }
+thead th.th-sort.sort-desc::after { content: '▼'; opacity: 1; color: #fde68a; }
+thead th.th-sort.sort-asc::after { content: '▲'; opacity: 1; color: #fde68a; }
 
 .legend {
   padding: 10px 16px;
